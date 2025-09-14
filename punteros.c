@@ -540,6 +540,8 @@ void validador(struct fecha *p, char *resultado){
 // EJERCICIO (3)
 // no tiene en cuenta caracteres especiales ni espacios
 
+/*
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -579,11 +581,67 @@ void modificarTexto(char *frase, char *opTipo){
 }
 
 
+*/
+
+//////////////////////////////////////////////////
+
+
+// EJERCICIO (4)
+
+#include <stdio.h>
+#include <string.h>
+
+
+
+struct articulo {
+    int id;
+    char nombre[30];
+    int costo;
+    int cantidad;
+};
+
+
+int main(){
+
+    struct articulo articulos[50];
+    int boton = 0;
+
+    while( boton != 3){
+
+        switch(boton){
+            case 1:
+                calcularInv();
+                break;
+
+            case 2:
+                busquedaID();
+                break;
+
+            case 3:
+                boton=3;
+                printf("Saliendo del programa...\n");
+                break;
+
+        }
+
+    }
 
 
 
 
+    return 0;
+}
 
+//funcion para calcular el valor de inventario.
+void calcularInv(){
+    printf("calcularInv FUNCIONANDO OK \n");
+}
+
+//funcion para buscar por ID y mostrar sus datos.
+
+void busquedaID(){
+    printf("busquedaID FUNCIONANDO OK \n");
+}
 
 
 
