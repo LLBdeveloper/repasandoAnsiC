@@ -477,7 +477,7 @@ int *p = &x;
 /*
 
 // EJERCICIO  (2)
-// falta validacion mejor ylogica para escribir el nombre del mes segun corresponda, esta harcodeado para una sola situacion
+// falta validacion mejor y logica para escribir el nombre del mes segun corresponda, esta harcodeado para una sola situacion.
 
 
 
