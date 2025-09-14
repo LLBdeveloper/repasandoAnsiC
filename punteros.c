@@ -590,6 +590,8 @@ void modificarTexto(char *frase, char *opTipo){
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h> // para limpiar la consola, solo funciona en windows ese comando "cls"
+#include <windows.h> // para el sleep y simular un delay
 
 
 
@@ -601,47 +603,113 @@ struct articulo {
 };
 
 
+void calcularInv(struct articulo *, int);
+void busquedaID(struct articulo *, int);
+
+
 int main(){
 
-    struct articulo articulos[50];
-    int boton = 0;
+    // XD
+    printf("\n \n \n \n \n INICIANDO SOFTWARE DE INVENTARIO. . . \n \n \n \n \n");
+    Sleep(750);
+    system("cls");
+    printf("\n \n \n \n \n CARGANDO STOCK. . . \n \n \n \n \n");
+    Sleep(1200);
+    system("cls");
 
+    //Estructura principal de articulos
+    struct articulo articulos[99] = {
+        {1, "Teclado Mecanico", 25000, 10},
+        {2, "Mouse Gamer", 15000, 20},
+        {3, "Monitor 24''", 120000, 5},
+        {4, "Auriculares Inalambricos", 35000, 15},
+        {5, "Notebook i5", 650000, 3}
+    };
+
+    // calcula la cantidad de struct articulo hay en el vector articulos.
+    // (divide el tamano total en bits por el tamano de uno solo)
+    // int totalEnCatalogo = sizeof(articulos) / sizeof(articulos[0]);
+    int totalEnCatalogo = 5;
+
+    //MENU
+    int boton = 0;
     while( boton != 3){
+
+        printf("\n--- MENU ---\n");
+        printf("\n1. Calcular valor total del inventario\n");
+        printf("2. Busqueda de productos por ID\n");
+        printf("3. Salir\n");
+        printf("\n Elige una opcion: \n");
+        scanf("%d", &boton);
+
 
         switch(boton){
             case 1:
-                calcularInv();
+                system("cls");
+                calcularInv(&articulos, totalEnCatalogo);
                 break;
 
             case 2:
-                busquedaID();
+                busquedaID(&articulos, totalEnCatalogo);
                 break;
 
             case 3:
                 boton=3;
-                printf("Saliendo del programa...\n");
+                system("cls");
+                printf("\n \n \n \n \n Saliendo del programa...\n \n \n \n \n");
+                Sleep(2000);
                 break;
 
+            default:
+                printf("\n Opcion incorrecta \n");
         }
-
     }
-
-
-
-
+    system("cls");
+    printf("\n \n \n \n \n ---GRACIAS POR UTILIZAR NUESTRO SOFTWARE DE INVENTARIO---\n \n \n \n \n");
     return 0;
 }
 
-//funcion para calcular el valor de inventario.
-void calcularInv(){
-    printf("calcularInv FUNCIONANDO OK \n");
+
+
+
+
+
+
+//Funcion para calcular el valor de inventario.
+void calcularInv(struct articulo *producto, int totalCatalogo){
+
+    int valorTotal=0;
+    for(int i=0; i<totalCatalogo; i++){
+        valorTotal += producto[i].costo * producto[i].cantidad ;
+    }
+
+//  printf("calcularInv FUNCIONANDO OK \n");
+    printf("La variedad de productos es de %d \n", totalCatalogo);
+    printf("\n \n \n \n \n El valor total en pesosARG de todos los productos en el inventario es de: $ %d\n\n \n \n \n \n ",valorTotal);
+
 }
 
-//funcion para buscar por ID y mostrar sus datos.
 
-void busquedaID(){
-    printf("busquedaID FUNCIONANDO OK \n");
+//Funcion para buscar por ID y mostrar sus datos.
+void busquedaID(struct articulo *producto, int totalCatalogo){
+    //printf("busquedaID FUNCIONANDO OK \n");
+
+    system("cls");
+    printf("Ingrese ID del producto a buscar:");
+    int idIngresado;
+    scanf("%d", &idIngresado);
+
+    for(int i=0; i<totalCatalogo; i++){
+
+        if(idIngresado == producto[i].id){
+            system("cls");
+            printf("\n\n \n \n \n \n PRODUCTO ENCONTRADO POR ID: \n\nId:%d \nNombre:%s \nCosto:%d \nCantidad:%d \n\n\n \n \n \n \n", producto[i].id, producto[i].nombre, producto[i].costo, producto[i].cantidad);
+        }
+    }
 }
+
+
+
 
 
 
@@ -697,6 +765,11 @@ int strlen(char *q)
 */
 
 ///////////////////////////////////////////////////////////////
+
+
+
+
+
 
 
 
