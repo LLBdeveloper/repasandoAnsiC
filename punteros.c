@@ -402,17 +402,17 @@ p es un puntero a puntero entero
 
 
 ////////////////////////////////////
-/*
-// COLORES EN TEXTO
 
+//////////////////////////////////////////////////////
+// COLORES EN TEXTO  //
+//////////////////////
     // Texto rojo
-    printf("\033[31mEste texto es rojo\033[0m\n");
+   // printf("\033[31mEste texto es rojo\033[0m\n");
     // Texto verde
-    printf("\033[32mEste texto es verde\033[0m\n");
+   // printf("\033[32mEste texto es verde\033[0m\n");
     // Texto azul
-    printf("\033[34mEste texto es azul\033[0m\n");
-
-*/
+   // printf("\033[34mEste texto es azul\033[0m\n");
+////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -477,7 +477,7 @@ int *p = &x;
 /*
 
 // EJERCICIO  (2)
-// falta validacion mejor y logica para escribir el nombre del mes segun corresponda, esta harcodeado para una sola situacion.
+// falta validacion mas compleja y logica para escribir el nombre del mes segun corresponda, esta harcodeado para una sola situacion.
 
 
 
@@ -585,6 +585,7 @@ void modificarTexto(char *frase, char *opTipo){
 
 //////////////////////////////////////////////////
 
+/*
 
 // EJERCICIO (4)
 
@@ -609,7 +610,7 @@ void busquedaID(struct articulo *, int);
 
 int main(){
 
-    // XD
+    // XD - activar para dar efecto de CARGANDO
     printf("\n \n \n \n \n INICIANDO SOFTWARE DE INVENTARIO. . . \n \n \n \n \n");
     Sleep(750);
     system("cls");
@@ -714,10 +715,125 @@ void busquedaID(struct articulo *producto, int totalCatalogo){
 
 
 
-
+*/
 
 
 /////////////////////////////
+
+
+// EJERCICIO (5)
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h> // para limpiar la consola, solo funciona en windows ese comando "cls"
+#include <windows.h> // para el sleep y simular un delay
+
+
+
+struct maxMin {
+    float maximo;
+    float minimo;
+};
+
+void buscar(float *, int, struct maxMin *);
+
+int main(){
+
+    // XD - activar para dar efecto de CARGANDO
+    printf("\033[31m\n \n \n \n \n INICIANDO SOFTWARE DETECTOR DE MAX MIN. . . \033[0m\n \n \n \n \n");
+    Sleep(990);
+    system("cls");
+    printf("\033[32m\n \n \n \n \n CARGANDO SISTEMA. . . \n \n \n \n \n\033[0m");
+    Sleep(1500);
+    system("cls");
+
+//////////////////////////////////////////////////////
+// COLORES EN TEXTO  //
+//////////////////////
+    // Texto rojo
+   // printf("\033[31mEste texto es rojo\033[0m\n");
+    // Texto verde
+   // printf("\033[32mEste texto es verde\033[0m\n");
+    // Texto azul
+   // printf("\033[34mEste texto es azul\033[0m\n");
+////////////////////////////////////////////////////////
+
+
+    float vectorNumeros[30];
+    int pedido;
+
+    struct maxMin resultado = {0,9999999};
+
+    //pedimos el ingreso del tamano del vector
+    do {
+        printf("Cuantos elementos desea introducir?\n");
+        scanf("%d",&pedido);
+        if (pedido<=1 || pedido>30) {
+                printf("ERROR!\nIngrese un valor entre 1 y 30 como máximo total de elementos a agregar\n");
+        }
+    } while (pedido<1 || pedido>30);  //verificar que sea valido el dato que ingresa
+
+
+
+    //pedimos ingreso de los elementos del vector (float)
+    for(int i=0; i<pedido; i++){
+        // agregar los elementos int uno por uno por el usuario por teclado
+        // y meterlos en el vector con el maximo que el ya te dio
+        system("cls");
+        printf("Introduce el float a ingresar en el vector, quedara guardado en la posicion indice: %d\n", i);
+        scanf("%f",&vectorNumeros[i]);
+    }
+
+    /*
+    //recorrer vector para ver si esta bien la logica
+    for(int i=0; i<pedido; i++){
+        printf("mostrar elemento vector indice %d: %f \n",i,vectorNumeros[i]);
+    }
+    */
+
+    buscar(&vectorNumeros,pedido,&resultado);
+    system("cls");
+    printf("RESULTADO\nMaximo:%f \nMinimo:%f \n", resultado.maximo,resultado.minimo);
+
+    return 0;
+}
+
+
+void buscar(float *pVector, int pedido, struct maxMin *pResultado){
+
+    //printf("anda la funcion BUSCAR \n");
+
+    //buscar el maximo del vector pasado por referencia
+    //buscar el minimo del vector pasado por referencia
+
+
+    //recorrer vector
+    for(int i=0; i<pedido; i++){
+            //printf("mostrar elemento vector indice %d: %f \n",i,pVector[i]);
+            if (pVector[i]>(*pResultado).maximo){
+                (*pResultado).maximo = pVector[i];
+                //printf("el elemento del vector con indice: %d ES EL NUEVO MAXIMO",i);
+            }
+            if (pVector[i]<(*pResultado).minimo){
+                (*pResultado).minimo = pVector[i];
+                //printf("el elemento del vector con indice: %d ES EL NUEVO MAXIMO",i);
+            }
+        }
+    //printf("el maximo es:%f", (*pResultado).maximo);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
