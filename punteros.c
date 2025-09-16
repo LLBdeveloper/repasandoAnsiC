@@ -967,7 +967,7 @@ int main(){
     */
 
 do{
-    printf("\n--- MENU ---\n\n");
+    printf("\n\n\n\n\--- MENU ---\n\n\n");
     printf("1. Agregar perrito\n");
     printf("2. Ver perritos\n");
     printf("3. Buscar perrito\n");
@@ -1009,15 +1009,33 @@ do{
 //agrega un perrito
 int add(struct perrito *pVector, int *cantTotal){
     system("cls");
-    printf("\n\n\n\n\nFuncion ADD esta ok.\n\n\n\n\n");
+    printf("\n\n\n\n\n AGREGAR PERRITO \n\n\n\n\n");
 
+    //creamos instancia new
     struct perrito nuevo;
-    //FALTA PEDIR AL USUARIO QUE LO INGRESE  Y SACAR EL HARCODEADO
-    nuevo.id = *cantTotal+1;
-    strcpy(nuevo.name,"firulais");
-    nuevo.age= 8;
-    strcpy(nuevo.adress.street,"alem");
-    nuevo.adress.number = 233;
+
+    //id
+    nuevo.id = *cantTotal + 1;
+    //nombre
+    printf("Ingrese el nombre del perrito: ");
+    fflush(stdin); //limpia buffer
+    fgets(nuevo.name, sizeof(nuevo.name), stdin);
+    //quitar salto de linea
+    size_t len = strlen(nuevo.name);
+    if(len > 0 && nuevo.name[len-1] == '\n') nuevo.name[len-1] = '\0';
+    //edad
+    printf("Ingrese la edad del perrito: ");
+    scanf("%d", &nuevo.age);
+    //calle
+    printf("Ingrese la calle donde vive el perrito: ");
+    fflush(stdin);
+    fgets(nuevo.adress.street, sizeof(nuevo.adress.street), stdin);
+    len = strlen(nuevo.adress.street);
+    if(len > 0 && nuevo.adress.street[len-1] == '\n') nuevo.adress.street[len-1] = '\0';
+    //numero calle
+    printf("Ingrese el numero de la calle: ");
+    scanf("%d", &nuevo.adress.number);
+
 
     pVector[*cantTotal]=nuevo;
 
@@ -1027,28 +1045,28 @@ int add(struct perrito *pVector, int *cantTotal){
 };
 
 
-
-
-
-
-
-
-
-
 //muestra todos los perritos
 void show(struct perrito *pVector, int cantTotal){
     system("cls");
-    printf("\n\n\n\n\nFuncion SHOW esta ok.\n\n\n\n\n");
-    for(int i=0; i<cantTotal; i++){
-        printf("-Datos del Perrito- \nID:%d \nNombre:%s \nEdad:%d \nDireccion:%s %d",pVector->id, pVector->name, pVector->age, pVector->adress.street, pVector->adress.number);
+    printf("\n\n\n\n\n Agenda de perritos \n\n\n\n\n");
+    if(cantTotal!=0){
+        for(int i=0; i<cantTotal; i++){
+            printf("-Datos del Perrito- \nID:%d \nNombre:%s \nEdad:%d \nDireccion:%s %d\n\n",
+                   pVector[i].id,
+                   pVector[i].name,
+                   pVector[i].age,
+                   pVector[i].adress.street,
+                   pVector[i].adress.number);
+                    }
+    }else{
+        printf("No hay perritos en sistema !");
     }
 };
-
 
 //busca un perrito por id
 void search(){
     system("cls");
-    printf("\n\n\n\n\nFuncion SEARCH esta ok.\n\n\n\n\n");
+    printf("\n\n\n\n\nFuncion SEARCH proximamente XD.\n\n\n\n\n");
 };
 
 
