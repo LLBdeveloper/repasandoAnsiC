@@ -919,14 +919,18 @@ int strlen(char *pString){
 //Ejemplo en clase 11/9
 
 
-
+//librerias
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdlib.h> // para limpiar la consola, solo funciona en windows ese comando "cls"
+#include <stdlib.h> // para limpiar la consola, solo funciona en windows. comando "cls"
 #include <windows.h> // para el sleep y simular un delay
 
+
+//constante
 #define MAX 4
 
+
+//struct
 struct direccion{
     char street[20];
     int number;
@@ -939,13 +943,28 @@ struct perrito{
     struct direccion adress;
 };
 
-void add();
-void show();
+
+//predefinimos funciones
+int add(struct perrito *, int *);
+void show(struct perrito *, int);
 void search();
 
+
+//MAIN
 int main(){
     struct perrito dogs[MAX];
+    int contPerritos=0;
     int boton;
+
+    /*
+    struct perrito firulais;
+    firulais.id = 1;
+    strcpy(firulais.name,"firulais");
+    firulais.age = 9;
+    strcpy(firulais.adress.street,"alem");
+    firulais.adress.number= 233;
+    dogs[0]= firulais;
+    */
 
 do{
     printf("\n--- MENU ---\n\n");
@@ -958,10 +977,10 @@ do{
 
     switch(boton){
         case 1:
-            add();
+            add(dogs,&contPerritos);
             break;
         case 2:
-            show();
+            show(dogs,contPerritos);
             break;
         case 3:
              search();
@@ -978,27 +997,58 @@ do{
     }
 }while(boton!=4);
 
-
-
     return 0;
 }
 
-void add(){
+
+//FUNCIONES
+
+
+
+
+//agrega un perrito
+int add(struct perrito *pVector, int *cantTotal){
     system("cls");
     printf("\n\n\n\n\nFuncion ADD esta ok.\n\n\n\n\n");
+
+    struct perrito nuevo;
+    //FALTA PEDIR AL USUARIO QUE LO INGRESE  Y SACAR EL HARCODEADO
+    nuevo.id = *cantTotal+1;
+    strcpy(nuevo.name,"firulais");
+    nuevo.age= 8;
+    strcpy(nuevo.adress.street,"alem");
+    nuevo.adress.number = 233;
+
+    pVector[*cantTotal]=nuevo;
+
+
+    (*cantTotal)++;
+    return 0;
 };
 
-void show(){
+
+
+
+
+
+
+
+
+
+//muestra todos los perritos
+void show(struct perrito *pVector, int cantTotal){
     system("cls");
     printf("\n\n\n\n\nFuncion SHOW esta ok.\n\n\n\n\n");
-
-//for
-//printf
+    for(int i=0; i<cantTotal; i++){
+        printf("-Datos del Perrito- \nID:%d \nNombre:%s \nEdad:%d \nDireccion:%s %d",pVector->id, pVector->name, pVector->age, pVector->adress.street, pVector->adress.number);
+    }
 };
 
+
+//busca un perrito por id
 void search(){
     system("cls");
-    printf("\n\n\n\n\nFuncion SHOW esta ok.\n\n\n\n\n");
+    printf("\n\n\n\n\nFuncion SEARCH esta ok.\n\n\n\n\n");
 };
 
 
