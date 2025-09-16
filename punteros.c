@@ -1003,9 +1003,6 @@ do{
 
 //FUNCIONES
 
-
-
-
 //agrega un perrito
 int add(struct perrito *pVector, int *cantTotal){
     system("cls");
@@ -1014,6 +1011,7 @@ int add(struct perrito *pVector, int *cantTotal){
     //creamos instancia new
     struct perrito nuevo;
 
+    //datos del perrix
     //id
     nuevo.id = *cantTotal + 1;
     //nombre
@@ -1036,10 +1034,10 @@ int add(struct perrito *pVector, int *cantTotal){
     printf("Ingrese el numero de la calle: ");
     scanf("%d", &nuevo.adress.number);
 
-
+    //cargamos al vec la nueva instancia
     pVector[*cantTotal]=nuevo;
 
-
+    //actualizamos el total
     (*cantTotal)++;
     return 0;
 };
