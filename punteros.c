@@ -944,10 +944,10 @@ struct perrito{
 };
 
 
-//predefinimos funciones
+//prototipos d funciones
 int add(struct perrito *, int *);
 void show(struct perrito *, int);
-void search();
+void search(struct perrito *, int);
 
 
 //MAIN
@@ -956,7 +956,7 @@ int main(){
     int contPerritos=0;
     int boton;
 
-    /*
+    /* //harcodeando para probar
     struct perrito firulais;
     firulais.id = 1;
     strcpy(firulais.name,"firulais");
@@ -967,11 +967,11 @@ int main(){
     */
 
 do{
-    printf("\n\n\n\n\--- MENU ---\n\n\n");
-    printf("1. Agregar perrito\n");
-    printf("2. Ver perritos\n");
-    printf("3. Buscar perrito\n");
-    printf("4. Salir\n");
+    printf("\n\n\n\n--- MENU ---\n\n\n");
+    printf("\033[34m1. Agregar perrito\n\033[0m");
+    printf("\033[34m2. Ver perritos\n\033[0m");
+    printf("\033[34m3. Buscar perrito\n\033[0m");
+    printf("\033[34m4. Salir\n\033[0m");
     printf("\n Elige una opcion: \n");
     scanf("%d", &boton);
 
@@ -983,7 +983,7 @@ do{
             show(dogs,contPerritos);
             break;
         case 3:
-             search();
+             search(dogs,contPerritos);
             break;
         case 4:
             boton=4;
@@ -1008,7 +1008,7 @@ int add(struct perrito *pVector, int *cantTotal){
     system("cls");
     printf("\n\n\n\n\n AGREGAR PERRITO \n\n\n\n\n");
 
-    //creamos instancia new
+    //creamos instancia nueva
     struct perrito nuevo;
 
     //datos del perrix
@@ -1016,7 +1016,7 @@ int add(struct perrito *pVector, int *cantTotal){
     nuevo.id = *cantTotal + 1;
     //nombre
     printf("Ingrese el nombre del perrito: ");
-    fflush(stdin); //limpia buffer
+    fflush(stdin);
     fgets(nuevo.name, sizeof(nuevo.name), stdin);
     //quitar salto de linea
     size_t len = strlen(nuevo.name);
@@ -1057,14 +1057,50 @@ void show(struct perrito *pVector, int cantTotal){
                    pVector[i].adress.number);
                     }
     }else{
-        printf("No hay perritos en sistema !");
+        printf("No hay perritos en sistema!\n\n :(\n");
     }
 };
 
+
+
+
 //busca un perrito por id
-void search(){
+void search(struct perrito *pVector, int cantTotal){
+
+   int idABuscar;
     system("cls");
-    printf("\n\n\n\n\nFuncion SEARCH proximamente XD.\n\n\n\n\n");
+    printf("\n\n\n\n\n\n BUSQUEDA DE PERRITOS POR ID \n\n\n\n\n\n");
+    printf("Ingrese ID del perrito a buscar: \n");
+    scanf("%d",&idABuscar);
+
+    for(int i=0; i<cantTotal; i++){
+        if(idABuscar==pVector->id){
+            system("cls");
+            printf("\n\n\n\n\n\n BUSQUEDA DE PERRITOS POR ID \n\n\n\n\n\n");
+            printf("\033[32m- COINCIDENCIA DE ID - \n PERRITO ENCONTRADO! \n\n Nombre: %s\033[0m", pVector->name);
+        }else{
+            system("cls");
+            printf("\n\n\n\n\n\n BUSQUEDA DE PERRITOS POR ID \n\n\n\n\n\n");
+            printf("\033[31mID NO ENCONTRADO\033[0m");
+        }
+        pVector++;
+    }
+
+
+
 };
+
+//////////////////////////////////////////////////////
+// COLORES EN TEXTO  //
+//////////////////////
+    // Texto rojo
+   // printf("\033[31mEste texto es rojo\033[0m\n");
+    // Texto verde
+   // printf("\033[32mEste texto es verde\033[0m\n");
+    // Texto azul
+   // printf("\033[34mEste texto es azul\033[0m\n");
+////////////////////////////////////////////////////////
+
+
 
 
