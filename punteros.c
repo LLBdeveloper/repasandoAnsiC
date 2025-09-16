@@ -869,8 +869,12 @@ void buscar(float *pVector, int pedido, struct maxMin *pResultado){
 
 
 
-////////////////////////
-//EJERCICIOS EN EQUIPO
+/////////////////////////
+//EJERCICIOS EN EQUIPO//
+///////////////////////
+
+
+/*
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Ejercicio 1 en clase (POR EQUIPOS)
 ///////////////////////
@@ -879,7 +883,7 @@ void buscar(float *pVector, int pedido, struct maxMin *pResultado){
 //(sirve para calcular la longitud de una cadena de caracteres)
 
 
-#include<stdio.h>
+#include <stdio.h>
 
 int strlen(char*);
 int main(){
@@ -902,41 +906,99 @@ int strlen(char *pString){
     int resultado;
     for(resultado=0; *pString != '\0'; pString++){
             resultado++;
-        //pString++;
-        //resultado=cont;
-
     }
     return resultado;
 }
 
 
-
-
-
-
-
-/*
-int strlen(char *q){
-     int cont=0;
-     while(*q!='\0')
-    {
-
-        cont++;
-        q++;
-    }
-        return (cont);
-
-}
-
 */
 
-///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+
+
+//Ejemplo en clase 11/9
 
 
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdlib.h> // para limpiar la consola, solo funciona en windows ese comando "cls"
+#include <windows.h> // para el sleep y simular un delay
+
+#define MAX 4
+
+struct direccion{
+    char street[20];
+    int number;
+};
+
+struct perrito{
+    int id;
+    char name[40];
+    int age;
+    struct direccion adress;
+};
+
+void add();
+void show();
+void search();
+
+int main(){
+    struct perrito dogs[MAX];
+    int boton;
+
+do{
+    printf("\n--- MENU ---\n\n");
+    printf("1. Agregar perrito\n");
+    printf("2. Ver perritos\n");
+    printf("3. Buscar perrito\n");
+    printf("4. Salir\n");
+    printf("\n Elige una opcion: \n");
+    scanf("%d", &boton);
+
+    switch(boton){
+        case 1:
+            add();
+            break;
+        case 2:
+            show();
+            break;
+        case 3:
+             search();
+            break;
+        case 4:
+            boton=4;
+            system("cls");
+            printf("\n \n \n \n \n Saliendo del programa...\n \n \n \n \n");
+            Sleep(2000);
+            break;
+        default:
+            system("cls");
+            printf("\n Opcion incorrecta \n");
+    }
+}while(boton!=4);
 
 
 
+    return 0;
+}
 
+void add(){
+    system("cls");
+    printf("\n\n\n\n\nFuncion ADD esta ok.\n\n\n\n\n");
+};
+
+void show(){
+    system("cls");
+    printf("\n\n\n\n\nFuncion SHOW esta ok.\n\n\n\n\n");
+
+//for
+//printf
+};
+
+void search(){
+    system("cls");
+    printf("\n\n\n\n\nFuncion SHOW esta ok.\n\n\n\n\n");
+};
 
 
