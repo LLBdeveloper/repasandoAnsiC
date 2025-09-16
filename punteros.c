@@ -756,7 +756,7 @@ void busquedaID(struct articulo *producto, int totalCatalogo){
 
 
 
-
+/*
 
 ///////////////////////////////////////////////////////////////////////
                     ////
@@ -813,12 +813,12 @@ int main(){
         scanf("%f",&vectorNumeros[i]);
     }
 
-    /*
+
     //recorrer vector para ver si esta bien la logica
-    for(int i=0; i<pedido; i++){
-        printf("mostrar elemento vector indice %d: %f \n",i,vectorNumeros[i]);
-    }
-    */
+    //for(int i=0; i<pedido; i++){
+    //    printf("mostrar elemento vector indice %d: %f \n",i,vectorNumeros[i]);
+    //}
+
 
     buscar(&vectorNumeros,pedido,&resultado);
     system("cls");
@@ -852,6 +852,9 @@ void buscar(float *pVector, int pedido, struct maxMin *pResultado){
 }
 
 
+
+*/
+
 //////////////////////////////////////////////////////
 // COLORES EN TEXTO  //
 //////////////////////
@@ -866,36 +869,54 @@ void buscar(float *pVector, int pedido, struct maxMin *pResultado){
 
 
 
-
-/*
+////////////////////////
+//EJERCICIOS EN EQUIPO
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Ejercicio 1 en clase ( POR EQUIPOS)
+//Ejercicio 1 en clase (POR EQUIPOS)
 ///////////////////////
+
+//Consigna hacer la funcion nativa de C STRLEN
+//(sirve para calcular la longitud de una cadena de caracteres)
+
 
 #include<stdio.h>
 
 int strlen(char*);
-int main()
-{
+int main(){
+
     char texto[20];
     char *p;
     int cant;
 
-    p=texto;
-
-
     printf("Ingrese una palabra\n");
     scanf("%s",texto);
 
-    cant=strlen(p);
+    cant=strlen(texto);
 
     printf("La palabra tiene %d letras\n",cant);
 
 return 0;
 }
 
-int strlen(char *q)
-{
+int strlen(char *pString){
+    int resultado;
+    for(resultado=0; *pString != '\0'; pString++){
+            resultado++;
+        //pString++;
+        //resultado=cont;
+
+    }
+    return resultado;
+}
+
+
+
+
+
+
+
+/*
+int strlen(char *q){
      int cont=0;
      while(*q!='\0')
     {
