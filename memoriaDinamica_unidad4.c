@@ -51,7 +51,7 @@ Tras reservar memoria y usarla, deberemos hacer uso de free() para liberarla.
 
 
 
-
+/*
 
 #include <stdio.h>
 
@@ -73,13 +73,14 @@ int main(){
     return 0;
 }
 
+*/
+
+
+
 
 
 
 /*
-
-
-
 3. realloc() - Redimensionar
 c
 numeros = (int*)realloc(numeros, 20 * sizeof(int)); // Ahora 20 enteros
@@ -95,8 +96,28 @@ free(numeros); // ¡Siempre liberar!
 Devuelve la memoria al sistema.
 
 Evita fugas de memoria.
-
-
-
-
 */
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+
+
+
+int main(){
+
+
+
+    return 0;
+}
+
+
+
+
+
