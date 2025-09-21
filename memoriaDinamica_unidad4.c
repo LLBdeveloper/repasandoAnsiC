@@ -88,7 +88,7 @@ malloc reserva memoria en el heap (un bloque sin nombre) y te devuelve la direcc
 
 
 
-///////Array estático:
+///////Array estatico:
 
 Vive en el stack.
 
@@ -97,7 +97,7 @@ Tamaño fijo en tiempo de compilación (int arr[5]).
 Se destruye al salir del scope.
 
 
-///////Array dinámico:
+///////Array dinamico:
 
 Vive en el heap.
 
