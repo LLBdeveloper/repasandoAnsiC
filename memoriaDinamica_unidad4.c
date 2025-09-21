@@ -1,6 +1,6 @@
-/////////////////////////////////////////////////////
-// MEMORIA DINAMICA ( MALLOC - CALLOC- FREE)  //////
-///////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+//// MEMORIA DINAMICA (MALLOC - CALLOC - REALOC - FREE)  //////
+///////////////////////////////////////////////////////////////
 
 
 
@@ -34,6 +34,29 @@ Limitada en tamaño	                     Mucho más grande
 
 
 
+Usar stack cuando:
+
+* sabes de antemano el tamaño maximo
+
+* el array no es gigante.
+
+* buscamos simplicidad y velocidad.
+
+
+
+Usar heap  cuando:
+
+/ no se el tamaño hasta que el programa corre ej.el usuario escribe  datos
+
+* necesitas estructuras grandes (listas, aboles, vectores gigantes
+
+* queres que la memoria sobreviva mas alla de una funcion
+
+
+
+
+
+
 /////////////////////////////////////////////////////////////////
 
 La diferencia entre malloc () y calloc ():
@@ -47,7 +70,139 @@ En general, si no requiero inicialización uso malloc()
 NO olvidar liberar memoria!!
 
 Tras reservar memoria y usarla, deberemos hacer uso de free() para liberarla.
+
+
+
+
+
+
+
+
+
+------------------------Diferencia clave
+
+
+Un puntero normal apunta a una variable ya existente.
+
+malloc reserva memoria en el heap (un bloque sin nombre) y te devuelve la dirección de la primera celda de ese bloque.
+
+
+
+///////Array estático:
+
+Vive en el stack.
+
+Tamaño fijo en tiempo de compilación (int arr[5]).
+
+Se destruye al salir del scope.
+
+
+///////Array dinámico:
+
+Vive en el heap.
+
+Tamaño elegido en tiempo de ejecución (malloc).
+
+Se destruye solo cuando hacés free(p).
+
+
 */
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////// MEMORIA DINAMICA  ///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/*
+
+////////////////////////
+// MALLOC()
+//Asigna un bloque de memoria no inicializada (basura).
+
+
+//sintaxis
+void* malloc(size_t size);
+
+//ejemplo
+int *arr = (int*)malloc(5 * sizeof(int)); // Array de 5 enteros
+if (arr == NULL) {
+    printf("Error: Memoria insuficiente\n");
+    exit(1);
+} // ¡Contiene valores basura!
+
+
+
+
+//////////////////////////////////////
+//CALLOC()
+// Asigna memoria inicializada a cero
+
+
+//sintaxis
+void* calloc(size_t num, size_t size);
+
+//Ejemplo
+int *arr = (int*)calloc(5, sizeof(int)); // 5 enteros inicializados a 0
+if (arr == NULL) {
+    printf("Error: Memoria insuficiente\n");
+    exit(1);
+}
+
+
+
+//////////////////////////////////////
+//REALLOC
+//Redimensiona un bloque de memoria previamente asignado.
+
+
+//Sintaxis
+void* realloc(void* ptr, size_t new_size);
+
+//ejemplo
+int *arr = (int*)malloc(3 * sizeof(int));
+arr[0] = 1; arr[1] = 2; arr[2] = 3;
+
+// Ampliar a 5 elementos
+int *new_arr = (int*)realloc(arr, 5 * sizeof(int));
+if (new_arr == NULL) {
+    printf("Error: No se pudo redimensionar\n");
+    free(arr);
+    exit(1);
+}
+arr = new_arr;
+arr[3] = 4; arr[4] = 5;
+
+
+
+
+//////////////////////////////////////
+//FREE
+//Libera memoria previamente asignada para evitar fugas.
+
+
+//sintaxis
+void free(void* ptr);
+
+//ejemplo
+int *arr = (int*)malloc(5 * sizeof(int));
+// Usar la memoria...
+free(arr);   // ¡Liberar!
+arr = NULL;  // Buena práctica: evitar punteros colgantes
+
+*/
+
+
+
+
+
+
+
+
 
 
 
@@ -103,21 +258,39 @@ Evita fugas de memoria.
 
 
 
+// Practicando3
 
+//Malloc
 
 #include <stdio.h>
+#include <stdlib.h>
 
 
+#define MAX 9
 
 
 int main(){
 
+    int * pArrNumeros = (int*)malloc(MAX * sizeof(int));
+
+
+    if (pArrNumeros == NULL) {
+        printf("Error al reservar espacio en memoria \n");
+        return 1;
+    }
+
+    printf("Se reservo espacio en memoria con exito \n");
+
+    int aux
+    for(int i = 0; i<MAX; i++){
+        printf("espacio en exa: %x  indice del arrNumeros: %d \n",(pArrNumeros), i );
+        pArrNumeros++;
+    }
+
+    free(pArrNumeros);
 
 
     return 0;
 }
-
-
-
 
 
