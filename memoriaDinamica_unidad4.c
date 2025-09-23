@@ -256,7 +256,7 @@ Evita fugas de memoria.
 
 
 
-
+/*
 
 // Practicando3
 
@@ -292,5 +292,53 @@ int main(){
 
     return 0;
 }
+
+
+*/
+
+
+//practicando 2
+
+//malloc & calloc
+
+#include <stdio.h>
+#include <stdlib.h>
+// tengo que hacer andar el aux, sin el ya funciona pero se me corre de posicion el puntero original lpm
+
+int main(){
+    int maximo=10;
+    int *pConMalloc=(int*)malloc(maximo*sizeof(int));
+    // int *aux=pConMalloc;
+    printf("\n\n\nla direccion en memoria de pConMalloc posicion 1 es: %x \n", pConMalloc);
+
+    int *aux;
+
+    aux = pConMalloc;
+
+    printf("\n\n\nla direccion en memoria de aux posicion 1 es: %x \n\n", aux);
+
+    for (int i=0; i < maximo; i++){
+
+        *pConMalloc= i+1;
+        printf("el contenido de pConMalloc es: %d \n", *pConMalloc);
+
+        pConMalloc++;
+
+    }
+
+
+        printf("\n\n\nla direccion en memoria de pConMalloc posicion 1 es: %x \n", pConMalloc);
+
+
+
+
+    return 0;
+}
+
+
+
+
+
+
 
 
