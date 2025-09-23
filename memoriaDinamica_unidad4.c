@@ -355,19 +355,37 @@ int main(){
 
 
 int main(){
+    int max = 3;
 
-    int * pConCalloc = (int*)calloc(3,sizeof(int));
-    printf("el contenido de pConCalloc es: %d \n", *pConCalloc);
+        int * pConCalloc = (int*)calloc(max,sizeof(int));
+
     if (pConCalloc == NULL) {
         printf("Error al reservar memoria\n");
         return 1; // por si falla ya tenemos la salida
     }
 
 
+    for (int i=0; i < max; i++){
+        printf("el contenido de pConCalloc es: %d \n", *pConCalloc);
+        }
+
+
+
+    //for escribiendo el calloc
+    int *aux;
+    aux = pConCalloc;
+
+    for (int i=0; i < 9; i++){
+        *aux=i;
+        printf("\n\n\nla direccion en memoria de aux posicion %d es: %x \n\n", i, aux);
+        printf("el contenido de aux es: %d \n", *aux);
+        aux++;
+    }
+
 
 //REALLOC
 
-    int *pConRealloc = (int*)realloc(pConCalloc,7*sizeof(int));
+    int *pConRealloc = (int*)realloc(pConCalloc,sizeof(int) * (max+2));
     if(pConRealloc == NULL){
         printf("error al asignar memoria \n");
         free(pConCalloc);
@@ -382,6 +400,7 @@ int main(){
 
     return 0;
 }
+
 
 
 
