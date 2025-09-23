@@ -297,13 +297,20 @@ int main(){
 */
 
 
+
+
+/*
+
 //practicando 2
 
 //malloc & calloc
 
+
+//MALLOC
+
 #include <stdio.h>
 #include <stdlib.h>
-// tengo que hacer andar el aux, sin el ya funciona pero se me corre de posicion el puntero original lpm
+// tengo que hacer andar el aux. (sin el ya funciona pero se me corre de posicion el puntero original lpm)
 
 int main(){
     int maximo=10;
@@ -319,15 +326,16 @@ int main(){
 
     for (int i=0; i < maximo; i++){
 
-        *pConMalloc= i+1;
-        printf("el contenido de pConMalloc es: %d \n", *pConMalloc);
+        *aux= i+1;
+        printf("el contenido de pConMalloc es: %d \n", *aux);
 
-        pConMalloc++;
+        aux++;
 
     }
 
 
         printf("\n\n\nla direccion en memoria de pConMalloc posicion 1 es: %x \n", pConMalloc);
+        printf("\n\n\nla direccion en memoria de aux posicion 1 es: %x \n\n", aux);
 
 
 
@@ -335,7 +343,45 @@ int main(){
     return 0;
 }
 
+*/
 
+
+
+
+//CALLOC
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int main(){
+
+    int * pConCalloc = (int*)calloc(3,sizeof(int));
+    printf("el contenido de pConCalloc es: %d \n", *pConCalloc);
+    if (pConCalloc == NULL) {
+        printf("Error al reservar memoria\n");
+        return 1; // por si falla ya tenemos la salida
+    }
+
+
+
+//REALLOC
+
+    int *pConRealloc = (int*)realloc(pConCalloc,7*sizeof(int));
+    if(pConRealloc == NULL){
+        printf("error al asignar memoria \n");
+        free(pConCalloc);
+        return 1; // por si falla ya tenemos la salida
+
+    }
+
+    pConCalloc = pConRealloc;
+
+
+    free(pConCalloc);
+
+    return 0;
+}
 
 
 
