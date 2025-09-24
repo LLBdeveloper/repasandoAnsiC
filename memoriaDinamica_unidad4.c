@@ -299,62 +299,47 @@ int main(){
 
 
 
-/*
+
 
 //practicando 2
 
 //malloc & calloc
 
 
-//MALLOC
 
 #include <stdio.h>
 #include <stdlib.h>
 // tengo que hacer andar el aux. (sin el ya funciona pero se me corre de posicion el puntero original lpm)
 
 int main(){
+
+
+//MALLOC
+    printf("\n\n\n ----- MALLOC : \n\n");
+
     int maximo=10;
     int *pConMalloc=(int*)malloc(maximo*sizeof(int));
     // int *aux=pConMalloc;
     printf("\n\n\nla direccion en memoria de pConMalloc posicion 1 es: %x \n", pConMalloc);
 
     int *aux;
-
     aux = pConMalloc;
-
     printf("\n\n\nla direccion en memoria de aux posicion 1 es: %x \n\n", aux);
 
     for (int i=0; i < maximo; i++){
-
         *aux= i+1;
         printf("el contenido de pConMalloc es: %d \n", *aux);
-
         aux++;
-
     }
-
-
         printf("\n\n\nla direccion en memoria de pConMalloc posicion 1 es: %x \n", pConMalloc);
         printf("\n\n\nla direccion en memoria de aux posicion 1 es: %x \n\n", aux);
 
 
 
-
-    return 0;
-}
-
-*/
-
-
-
-
 //CALLOC
-
-#include <stdio.h>
-#include <stdlib.h>
+    printf("\n\n\n ----- CALLOC : \n\n");
 
 
-int main(){
     int max = 3;
 
         int * pConCalloc = (int*)calloc(max,sizeof(int));
@@ -372,18 +357,19 @@ int main(){
 
 
     //for escribiendo el calloc
-    int *aux;
-    aux = pConCalloc;
+    int *aux2;
+    aux2 = pConCalloc;
 
-    for (int i=0; i < 9; i++){
-        *aux=i;
-        printf("\n\n\nla direccion en memoria de aux posicion %d es: %x \n\n", i, aux);
-        printf("el contenido de aux es: %d \n", *aux);
-        aux++;
+    for (int i=0; i < max; i++){
+        *aux2=i;
+        printf("\n\n\nla direccion en memoria de aux2 posicion %d es: %x \n\n", i, aux2);
+        printf("el contenido de aux2 es: %d \n", *aux2);
+        aux2++;
     }
 
 
 //REALLOC
+    printf("\n\n\n ----- REALLOC : \n\n");
 
     int *pConRealloc = (int*)realloc(pConCalloc,sizeof(int) * (max+2));
     if(pConRealloc == NULL){
@@ -401,9 +387,10 @@ int main(){
     return 0;
 }
 
-
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// FALTARIA ACOMODAR UN POCO EL CODIGO VERIFICAR QUE ESTE TODO BIEN que el aux       ////////////////////////
+//y el puntero del calloc este apuntando bien y demostrar que el realloc ya impacto ////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
