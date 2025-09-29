@@ -409,7 +409,6 @@ int main(){
 //librerias
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdlib.h> // para limpiar la consola, solo funciona en windows. comando "cls"
 #include <windows.h> // para el sleep y simular un delay
 
 
