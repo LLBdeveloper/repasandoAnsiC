@@ -399,7 +399,7 @@ int main(){
 
 
 
-
+/*
 //////////////////////////////////////
 ////   Ejemplo en clase 11/9   //////
 ////////////////////////////////////
@@ -595,6 +595,20 @@ void search(struct perrito *pVector, int cantTotal){
         pVector++;
     }
 };
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
 
 
 
