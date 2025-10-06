@@ -605,11 +605,67 @@ void search(struct perrito *pVector, int cantTotal){
 
 
 
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////// EJERCICIOS MEMORIA DINAMICA ////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////
+// ejercicio 1
 
 
 
 
+//librerias
+#include <stdio.h>
+#include <stdlib.h>
 
 
 
+//prototipos de funciones
+void aumentarContador(int* direccionDelcontador);
+void disminuirContador(int* direccionDelcontador);
 
+
+//main+
+int main (){
+
+    int max=1;
+
+    int* contadorCompartido = (int*)malloc(max*sizeof(int));
+    if(contadorCompartido == NULL){
+        printf("Error al reservar memoria\n");
+    }else{
+        printf("La direccion de memoria de contadorCompartido es:%x\n", contadorCompartido);
+    }
+
+    *contadorCompartido=15;
+    printf("El contador es:%d\n", *contadorCompartido);
+
+    int eleccion;
+    printf(" para aumentar el contador ingrese 1 \npara disminuir el contador ingrese 2\n");
+    scanf("%d", &eleccion);
+    if (eleccion == 1) {
+        aumentarContador(contadorCompartido);
+    }
+     if (eleccion == 2) {
+        disminuirContador(contadorCompartido);
+    }
+
+    return 0;
+}
+
+void aumentarContador(int* direccionDelcontador){
+    (*direccionDelcontador)++;
+    printf("Aumentamos en +1 el contadorCompartido\n");
+    printf("El contador actual es:%d\n",*direccionDelcontador);
+
+}
+
+void disminuirContador(int* direccionDelcontador){
+    (*direccionDelcontador)--;
+    printf("Disminuimos en -1 el contadorCompartido\n");
+    printf("El contador actual es:%d\n",*direccionDelcontador);
+
+}
