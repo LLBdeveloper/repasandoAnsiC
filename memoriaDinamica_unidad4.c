@@ -626,6 +626,7 @@ void search(struct perrito *pVector, int cantTotal){
 //prototipos de funciones
 void aumentarContador(int* direccionDelcontador);
 void disminuirContador(int* direccionDelcontador);
+void menu(int* direccionDelContador);
 
 
 //main+
@@ -643,18 +644,30 @@ int main (){
     *contadorCompartido=15;
     printf("El contador es:%d\n", *contadorCompartido);
 
-    int eleccion;
-    printf(" para aumentar el contador ingrese 1 \npara disminuir el contador ingrese 2\n");
-    scanf("%d", &eleccion);
-    if (eleccion == 1) {
-        aumentarContador(contadorCompartido);
-    }
-     if (eleccion == 2) {
-        disminuirContador(contadorCompartido);
-    }
+
+    menu(contadorCompartido);
+
 
     return 0;
 }
+
+
+////////////////
+//funciones
+
+void menu(int* direccionDelContador){
+        int eleccion;
+    do{
+        printf("Para aumentar el contador ingrese 1\nPara disminuir el contador ingrese 2\nPara salir ingrese 3\n");
+        scanf("%d", &eleccion);
+        if (eleccion == 1) {
+            aumentarContador(direccionDelContador);
+        }else if (eleccion == 2) {
+            disminuirContador(direccionDelContador);
+        }
+       }while(eleccion!=3);
+}
+
 
 void aumentarContador(int* direccionDelcontador){
     (*direccionDelcontador)++;
@@ -662,6 +675,7 @@ void aumentarContador(int* direccionDelcontador){
     printf("El contador actual es:%d\n",*direccionDelcontador);
 
 }
+
 
 void disminuirContador(int* direccionDelcontador){
     (*direccionDelcontador)--;
