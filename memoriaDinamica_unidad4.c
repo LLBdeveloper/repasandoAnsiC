@@ -611,6 +611,9 @@ void search(struct perrito *pVector, int cantTotal){
 
 
 
+
+
+/*
 ////////////////////////
 // ejercicio 1
 
@@ -682,4 +685,64 @@ void disminuirContador(int* direccionDelcontador){
     printf("Disminuimos en -1 el contadorCompartido\n");
     printf("El contador actual es:%d\n",*direccionDelcontador);
 
+}
+
+*/
+
+
+
+////////////////////////
+// ejercicio 2
+
+
+//librerias
+#include <stdio.h>
+#include <stdlib.h>
+
+//prototipos
+void mostrarVec(int max, char* vec);
+
+int main (){
+
+    //declaraciones
+    int maxOriginal=20;
+
+    //reservamos memoria en el heap
+    char* vector1 = (char*)malloc(maxOriginal * sizeof(char));
+    if(vector1 == NULL){
+        printf("Error al reservar memoria\n");
+    }else{
+        printf("La direccion de memoria de vector1 es:%x\n", vector1);
+    }
+
+    char* vector2 = (char*)calloc(maxOriginal, sizeof(char));
+    if(vector2 == NULL){
+        printf("Error al reservar memoria\n");
+    }else{
+        printf("La direccion de memoria de vector2 es:%x\n", vector2);
+    }
+
+
+
+    printf("\nVamos a mostrar vector1 con malloc\n");
+    mostrarVec(maxOriginal,vector1);
+
+    printf("\nVamos a mostrar vector2 con calloc\n");
+    mostrarVec(maxOriginal,vector2);
+
+
+    return 0;
+}
+
+
+void mostrarVec(int max, char* vec){
+
+    char* auxVec = vec;
+    for(int i=0; i<max; i++){
+
+        printf("%d",*auxVec);
+
+
+        auxVec++;
+    }
 }
