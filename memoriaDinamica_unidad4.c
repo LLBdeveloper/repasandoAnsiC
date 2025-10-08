@@ -715,35 +715,56 @@ int main (){
     if(vector1 == NULL){
         printf("Error al reservar memoria\n");
     }else{
-        printf("La direccion de memoria de vector1 es:%p\n",(void*)vector1);
+        printf("La direccion de memoria para verctor1 se reservo con exito y es:%p\n",(void*)vector1);
     }
 
     char* vector2 = (char*)calloc(maxOriginal, sizeof(char));
     if(vector2 == NULL){
         printf("Error al reservar memoria\n");
     }else{
-        printf("La direccion de memoria de vector2 es:%p\n", vector2);
+        printf("La direccion de memoria para verctor2 se reservo con exito y es:%p\n", vector2);
     }
 
 
+    printf("\n///////////////////////////////////////////////////////");
+    printf("///////////////////////////////////////////////////////\n");
+
+
     //mostarmos
-    printf("\nVamos a mostrar vector1 con malloc\n\n");
+    printf("\nVamos a mostrar vector1 con malloc\n");
     mostrarVec(maxOriginal,vector1);
 
-    printf("\nVamos a mostrar vector2 con calloc\n\n");
+    printf("\nVamos a mostrar vector2 con calloc\n");
     mostrarVec(maxOriginal,vector2);
 
+    printf("\n///////////////////////////////////////////////////////");
+    printf("///////////////////////////////////////////////////////\n");
 
-    //agrandamos los vector en 10 bytes
+
+    //expandimos los vector en 10 bytes
     int maxNuevo=maxOriginal+10;
+
     char* auxRealloc1 = (char*)realloc(vector1, sizeof(char)*maxNuevo);
+    if(auxRealloc1 == NULL){
+        printf("Error al expandir memoria\n");
+    }else{
+        printf("La direccion de memoria para verctor1 se expandio con exito y es:%p\n",(void*)auxRealloc1);
+    }
+
+
     char* auxRealloc2 = (char*)realloc(vector2, sizeof(char)*maxNuevo);
+    if(auxRealloc2 == NULL){
+        printf("Error al expandir memoria\n");
+    }else{
+        printf("La direccion de memoria para verctor2 se expandio con exito y es:%p\n",(void*)auxRealloc2);
+    }
+
 
     //mostramos ambos vectores expandidos
-    printf("\nVamos a mostrar vector1 con malloc\n\n");
+    printf("\nVamos a mostrar vector1 con malloc expandido en 10 bytes\n\n");
     mostrarVec(maxNuevo,vector1);
 
-    printf("\nVamos a mostrar vector2 con calloc\n\n");
+    printf("\nVamos a mostrar vector2 con calloc expandido en 10 bytes\n\n");
     mostrarVec(maxNuevo,vector2);
 
 
@@ -754,6 +775,11 @@ int main (){
 
     return 0;
 }
+
+
+////////////////
+//FUNCIONES
+
 
 //funcion que muestra vec
 void mostrarVec(int max, char* vec){
