@@ -699,9 +699,12 @@ void disminuirContador(int* direccionDelcontador){
 #include <stdio.h>
 #include <stdlib.h>
 
+
 //prototipos
 void mostrarVec(int max, char* vec);
 
+
+//main
 int main (){
 
     //declaraciones
@@ -712,31 +715,49 @@ int main (){
     if(vector1 == NULL){
         printf("Error al reservar memoria\n");
     }else{
-        printf("La direccion de memoria de vector1 es:%x\n", vector1);
+        printf("La direccion de memoria de vector1 es:%p\n",(void*)vector1);
     }
 
     char* vector2 = (char*)calloc(maxOriginal, sizeof(char));
     if(vector2 == NULL){
         printf("Error al reservar memoria\n");
     }else{
-        printf("La direccion de memoria de vector2 es:%x\n", vector2);
+        printf("La direccion de memoria de vector2 es:%p\n", vector2);
     }
 
 
-
-    printf("\nVamos a mostrar vector1 con malloc\n");
+    //mostarmos
+    printf("\nVamos a mostrar vector1 con malloc\n\n");
     mostrarVec(maxOriginal,vector1);
 
-    printf("\nVamos a mostrar vector2 con calloc\n");
+    printf("\nVamos a mostrar vector2 con calloc\n\n");
     mostrarVec(maxOriginal,vector2);
 
+
+    //agrandamos los vector en 10 bytes
+    int maxNuevo=maxOriginal+10;
+    char* auxRealloc1 = (char*)realloc(vector1, sizeof(char)*maxNuevo);
+    char* auxRealloc2 = (char*)realloc(vector2, sizeof(char)*maxNuevo);
+
+    //mostramos ambos vectores expandidos
+    printf("\nVamos a mostrar vector1 con malloc\n\n");
+    mostrarVec(maxNuevo,vector1);
+
+    printf("\nVamos a mostrar vector2 con calloc\n\n");
+    mostrarVec(maxNuevo,vector2);
+
+
+
+    free(vector1);
+    free(vector2);
+    free(auxRealloc1);
 
     return 0;
 }
 
-
+//funcion que muestra vec
 void mostrarVec(int max, char* vec){
-
+    printf("\n");
     char* auxVec = vec;
     for(int i=0; i<max; i++){
 
@@ -745,4 +766,17 @@ void mostrarVec(int max, char* vec){
 
         auxVec++;
     }
+    printf("\n");
+
 }
+
+
+//funcion que agranda el tamano del vector en 10 bytes
+void agrandaVec(){
+
+
+
+}
+
+
+
