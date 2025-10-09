@@ -691,6 +691,8 @@ void disminuirContador(int* direccionDelcontador){
 
 
 
+
+/*
 ////////////////////////
 // ejercicio 2
 
@@ -760,18 +762,21 @@ int main (){
     }
 
 
+    vector1 = auxRealloc1;
+    vector2 = auxRealloc2;
+
+
     //mostramos ambos vectores expandidos
     printf("\nVamos a mostrar vector1 con malloc expandido en 10 bytes\n\n");
-    mostrarVec(maxNuevo,vector1);
+    mostrarVec(maxNuevo,auxRealloc1);
 
     printf("\nVamos a mostrar vector2 con calloc expandido en 10 bytes\n\n");
-    mostrarVec(maxNuevo,vector2);
+    mostrarVec(maxNuevo,auxRealloc2);
 
 
-
+    //liberamos memoria
     free(vector1);
     free(vector2);
-    free(auxRealloc1);
 
     return 0;
 }
@@ -796,13 +801,122 @@ void mostrarVec(int max, char* vec){
 
 }
 
-
+// PENDIENTE
 //funcion que agranda el tamano del vector en 10 bytes
-void agrandaVec(){
+//void agrandaVec(){
+//}
 
 
+*/
+
+
+
+////////////////////////
+// ejercicio 3
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void agregarInt(int* vec, int* cont);
+void mostrarEnteros(int* vec, int* cont);
+
+
+int main(){
+
+    int maximo = 10;
+    int* contador = 0;
+
+     //reservamos vector en el heap de 10 int
+    int* vectorInt = (int*)malloc(maximo*sizeof(int));
+    if(vectorInt == NULL){
+        printf("ERROR - No se pudo reservar memoria para almacenar enteros\n");
+    }else{
+        printf("Memoria reservada con exito\n");
+    }
+
+
+
+    //menu
+
+    int botonMenu;
+    do{
+
+        printf("\nSOFTWARE PARA REGISTRAR ENTEROS\n\n");
+        printf("1 - Agregar enteros\n");
+        printf("2 - Ver enteros registrados\n");
+        printf("\nElige una opcion: ");
+        scanf("%d",&botonMenu);
+
+        switch (botonMenu) {
+            case 1:
+                printf("agregarInt - Agregar entero nuevo\n");
+                agregarInt(vectorInt,contador);
+                printf("El contador de numeros es:%d\n", contador);
+                break;
+
+            case 2:
+                printf("mostrarEnteros - ver enteros guardados\n");
+                mostrarEnteros(vectorInt,contador);
+                break;
+
+            case 0:
+                printf("EXIT\n");
+                botonMenu = 0;
+                break;
+
+            default:
+                printf("- ERROR - Ingreso invalido\n");
+                break;
+        }
+
+    }while(botonMenu != 0);
+
+
+
+
+
+
+    return 0;
+}
+
+
+////////////////
+//FUNCIONES
+
+
+
+
+//agregar entero
+void agregarInt(int* vec, int* cont){
+
+    int numNuevo;
+    printf("Escriba el entero que quiere ingresar:\n");
+    scanf("%d",&numNuevo);
+    (*vec)= numNuevo;
+    printf("Ingresado el entero:%d\n", *vec);
+    *cont++;
 
 }
 
 
 
+/// TERMINST EL CONTADOR no aumenta
+//ver todos los enteros
+void mostrarEnteros(int* vec, int* cont){
+
+    int* auxVec=vec;
+
+    if(auxVec == NULL){
+        printf("No hay enteros ingresados");
+    }
+
+    for(int i = 0; i<(*cont); i++){
+        printf("%d",*auxVec);
+        auxVec++;
+    }
+
+    printf("El contador de numeros es:%d\n", cont);
+
+}
