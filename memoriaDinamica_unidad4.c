@@ -995,12 +995,13 @@ void buscarInt(int* vec, int* cont){
 //Todo se debe realizar usando punteros y memoria dinámica.
 
 
-
+//LIBRERIAS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 
+//STRUCTS
 struct Cumple {
     char nombre[30];
     int dia;
@@ -1009,36 +1010,88 @@ struct Cumple {
 };
 
 
+//PROTOTIPOS DE FUNCION
 void ingresarCumple(struct Cumple* lista, int* cont);
 
 
+//MAIN
 int main(){
 
+    //maximo para la lista de cumpleanos
     int max = 50;
 
+    //declaraciones
     int contador = 0;
     int* pCont;
     pCont = &contador;
 
+    //reservamos memoria para lista de cumpleanos
     struct Cumple* cumpleanos = (struct Cumple*)calloc(max, sizeof(struct Cumple));
 
+
+    if(cumpleanos == NULL){ //verificacion
+        printf("-Error -  No se puede reservar memoria!");
+        return 1;
+    }
+
+    //llamamos funcion
     ingresarCumple(cumpleanos,pCont);
 
+
+    //liberamos memoria
+    free(cumpleanos);
+    return 0;
 }
 
 
+///////////////////
+//FUNCIONES
 
+
+//ingresarCumple
 void ingresarCumple(struct Cumple* lista,int* cont){
 
-    struct Cumple* nuevo;
-    nuevo = lista;
-    (*cont)++;
+    int salida = 0; //Flag para controlar el ciclo
+    char nombreTemp[30];
 
-    printf("\n- - - Cargar amigos - - -\n");
-    printf("      Ingrese los datos del cumpleaniero:\n");
+    do{
 
-    printf("Nombre:\n");
-    scanf("%s", nuevo->nombre );
-    printf("Usted ingreso:%s como nombre\n", nuevo->nombre);
-    printf("Cantidad de cumpleanios ingresados es:%d \n", *cont);
+
+
+        printf("\n- - - Cargar amigos - - -\n");
+        printf("      Ingrese los datos del cumpleaniero:\n");
+
+        //pedimos el nombre
+        printf("Nombre:\n");
+        scanf("%s", nombreTemp );
+
+        //condicion de salida
+        if(strcmp(nombreTemp, "fin") == 0){
+            salida=1;
+            printf("Comando de salida ingresado, saliendo del programa... Gracias por su visita!\n");
+            return;
+        }
+        struct Cumple* nuevo = lista + *cont;
+
+
+        //copiamos el nombre temporal al struct
+        strcpy(nuevo->nombre, nombreTemp);
+
+        //pedimos la fecha
+        printf("Dia: \n");
+        scanf("%d", &nuevo->dia);
+
+        printf("Mes: \n");
+        scanf("%d", &nuevo->mes);
+
+        printf("Anio: \n");
+        scanf("%d", &nuevo->anio);
+
+
+
+        printf("Usted ingreso:%s - Cumple: %d/%d/%d\n", nuevo->nombre, nuevo->dia, nuevo->mes, nuevo->anio);
+        (*cont)++;
+        printf("Cantidad de cumpleanios ingresados es:%d \n", *cont);
+
+    }while(salida != 1);
 }
