@@ -892,20 +892,19 @@ int main(){
 //agregar entero
 void agregarInt(int* vec, int* cont){
 
+
     int numNuevo;
 
     printf("Escriba el entero que quiere ingresar:\n");
     scanf("%d",&numNuevo);
-    *vec= numNuevo;
+    *(vec + *cont) = numNuevo;
 
     printf("Ingresado el entero:%d\n", *vec);
     (*cont)++;
-
 }
 
 
 
-// TERMINAR EL CONTADOR no aumenta.
 
 
 // ver todos los enteros
@@ -923,5 +922,11 @@ void mostrarEnteros(int* vec, int* cont){
     }
 
     printf("El contador de numeros es:%d\n", cont);
-
 }
+
+
+
+
+
+
+
