@@ -1011,7 +1011,7 @@ struct Cumple {
 
 
 //PROTOTIPOS DE FUNCION
-void ingresarCumple(struct Cumple* lista, int* cont);
+int ingresarCumple(struct Cumple* lista, int* cont);
 
 
 //MAIN
@@ -1049,7 +1049,7 @@ int main(){
 
 
 //ingresarCumple
-void ingresarCumple(struct Cumple* lista,int* cont){
+int ingresarCumple(struct Cumple* lista,int* cont){
 
     int salida = 0; //Flag para controlar el ciclo
     char nombreTemp[30];
@@ -1068,8 +1068,8 @@ void ingresarCumple(struct Cumple* lista,int* cont){
         //condicion de salida
         if(strcmp(nombreTemp, "fin") == 0){
             salida=1;
-            printf("Comando de salida ingresado, saliendo del programa... Gracias por su visita!\n");
-            return;
+            printf("\n\n\nComando de salida ingresado, saliendo del programa... Gracias por su visita!\n\n\n");
+            return 0;
         }
         struct Cumple* nuevo = lista + *cont;
 
@@ -1094,4 +1094,6 @@ void ingresarCumple(struct Cumple* lista,int* cont){
         printf("Cantidad de cumpleanios ingresados es:%d \n", *cont);
 
     }while(salida != 1);
+
+    return 0;
 }
