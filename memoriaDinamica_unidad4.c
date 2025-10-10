@@ -819,16 +819,18 @@ void mostrarVec(int max, char* vec){
 #include <stdlib.h>
 
 
-void agregarInt(int* vec, int* cont);
+int* agregarInt(int* vec, int* cont, int* max);
 void mostrarEnteros(int* vec, int* cont);
 
 
 int main(){
 
     int maximo = 10;
+    int* pMax;
+    pMax = &maximo;
+
     int contador = 0;
     int* pCont;
-
     pCont= &contador;
 
      //reservamos vector en el heap de 10 int
@@ -854,8 +856,8 @@ int main(){
 
         switch (botonMenu) {
             case 1:
-                agregarInt(vectorInt,pCont);
-                printf("El contador de numeros es:%d\n", contador);
+                vectorInt = agregarInt(vectorInt, pCont, pMax);
+                printf("El contador de numeros es:%d\n", *pCont);
                 break;
 
             case 2:
@@ -890,7 +892,26 @@ int main(){
 
 
 //agregar entero
-void agregarInt(int* vec, int* cont){
+int* agregarInt(int* vec, int* cont, int* max){
+
+    int nuevoMax;
+    nuevoMax = (*max + 5);
+    //expandimos la memoria si solo queda un espacio libre en el vector
+    int* vecExpandido;
+    if(*cont == (*max-1)) {
+        printf("Ultimo espacio disponible... Expandiendo memoria...\n...\n...\n...\n");
+        vecExpandido = (int*)realloc(vec, nuevoMax *(sizeof(int)) );
+
+        if(vecExpandido == NULL){
+            printf("ERROR - No se pudo expandir la memoria  !! !! !! ");
+        }else{
+            printf("Exito - Cuentas con 6 espacios disponibles!");
+            vec = vecExpandido;
+            *max = nuevoMax;
+        }
+
+    }
+
 
 
     int numNuevo;
@@ -899,8 +920,10 @@ void agregarInt(int* vec, int* cont){
     scanf("%d",&numNuevo);
     *(vec + *cont) = numNuevo;
 
-    printf("Ingresado el entero:%d\n", *vec);
+    printf("Ingresado el entero:%d\n", numNuevo);
     (*cont)++;
+
+    return vec;
 }
 
 
@@ -912,7 +935,7 @@ void mostrarEnteros(int* vec, int* cont){
 
     int* auxVec=vec;
 
-    if(auxVec == NULL){
+    if(*cont == 0){
         printf("No hay enteros ingresados \n");
     }
 
@@ -921,12 +944,8 @@ void mostrarEnteros(int* vec, int* cont){
         auxVec++;
     }
 
-    printf("El contador de numeros es:%d\n", cont);
+    printf("El contador de numeros es:%d\n", *cont);
 }
-
-
-
-
 
 
 
