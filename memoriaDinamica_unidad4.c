@@ -810,9 +810,10 @@ void mostrarVec(int max, char* vec){
 */
 
 
-
+/*
 ////////////////////////
 // ejercicio 3
+// y 4 al final
 
 
 #include <stdio.h>
@@ -821,6 +822,7 @@ void mostrarVec(int max, char* vec){
 
 int* agregarInt(int* vec, int* cont, int* max);
 void mostrarEnteros(int* vec, int* cont);
+void buscarInt(int* vec, int* cont);
 
 
 int main(){
@@ -851,6 +853,7 @@ int main(){
         printf("\nSOFTWARE PARA REGISTRAR ENTEROS\n\n");
         printf("1 - Agregar enteros\n");
         printf("2 - Ver enteros registrados\n");
+        printf("3 - Buscar entero y comprobar existencia\n");
         printf("\nElige una opcion: ");
         scanf("%d",&botonMenu);
 
@@ -862,6 +865,10 @@ int main(){
 
             case 2:
                 mostrarEnteros(vectorInt,pCont);
+                break;
+
+            case 3:
+                buscarInt(vectorInt,pCont);
                 break;
 
             case 0:
@@ -948,4 +955,90 @@ void mostrarEnteros(int* vec, int* cont){
 }
 
 
+////////////////////////
+// ejercicio 4
 
+
+//Consigna:
+//Cargar un vector de enteros con memoria dinámica
+//y llamar una función para buscar un elemento, e indicar si existe.
+//Usando aritmética de punteros.
+
+void buscarInt(int* vec, int* cont){
+    int buscado;
+    printf("Ingrese el entero que quiere buscar\n");
+    scanf("%d\n",&buscado);
+
+    int* auxVec = vec;
+
+    for(int i=0; i<*cont; i++){
+        if( *(auxVec+i) == buscado ){
+            printf("El entero buscado:%d existe !!\n", *(auxVec+i));
+
+        }else{
+            printf("Entero:%d no encontrado\n", buscado);
+        }
+    }
+}
+
+*/
+
+
+
+
+////////////////////////
+// ejercicio 5
+
+//Crear una lista de cumpleaños con nombre de hasta 50 personas.
+//Iniciarla con datos vacíos 0-0-0 y nombre nulo.
+//Crear una opción permita cargar amigos hasta ingresar como nombre la palabra "fin".
+//Todo se debe realizar usando punteros y memoria dinámica.
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+struct Cumple {
+    char nombre[30];
+    int dia;
+    int mes;
+    int anio;
+};
+
+
+void ingresarCumple(struct Cumple* lista, int* cont);
+
+
+int main(){
+
+    int max = 50;
+
+    int contador = 0;
+    int* pCont;
+    pCont = &contador;
+
+    struct Cumple* cumpleanos = (struct Cumple*)calloc(max, sizeof(struct Cumple));
+
+    ingresarCumple(cumpleanos,pCont);
+
+}
+
+
+
+void ingresarCumple(struct Cumple* lista,int* cont){
+
+    struct Cumple* nuevo;
+    nuevo = lista;
+    (*cont)++;
+
+    printf("\n- - - Cargar amigos - - -\n");
+    printf("      Ingrese los datos del cumpleaniero:\n");
+
+    printf("Nombre:\n");
+    scanf("%s", nuevo->nombre );
+    printf("Usted ingreso:%s como nombre\n", nuevo->nombre);
+    printf("Cantidad de cumpleanios ingresados es:%d \n", *cont);
+}
