@@ -52,6 +52,7 @@ int main(){
  //    FGETC    //
 /////////////////
 //  La funcion fgetc(FILE*archivo);
+//
 //Lee el caracter al cual esta apuntando
 //actualmente el puntero de lectura / escritura y avanza al siguiente
 //
@@ -112,6 +113,7 @@ int main(){
  //    FGETS    //
 /////////////////
 //  fgets(char* destino, cant, FILE*archivo);
+//
 //Lee una cadena de caracteres del archivo a partir de la posicion en
 //donde se encuentra el puntero de lectura/escritura
 //y hasta encontrar un salto de linea /n
@@ -167,6 +169,7 @@ int main(){
  //    FSCANF   //
 /////////////////
 //      fscanf(archivo,"%d-%d-%d",&nota1,&nota2,&nota3);
+//
 //Agarra una cadena de caracteres y la formatea a valores numericos y lo guarda en una variable
 //
 //Indica el formato que tiene el registro a leer.
@@ -187,6 +190,7 @@ int main(){
     char buffer[100];
     int cantA = 0;
     char caracter_leido;
+    float promedio;
 
 
     //Paso 1 -  Inicializamos
@@ -197,16 +201,24 @@ int main(){
     archivoTXT = fopen("textoPrueba.txt","r");
     if(archivoTXT == NULL){  //validacion
 
-        printf("No se pudo abrir el archivo");
+        printf("No se pudo abrir el archivo\n");
         return 1;
 
     } else{
-        printf("El archivo se abrio con exito");
+        printf("El archivo se abrio con exito\n\n");
     }
 
     //Paso 3 - LEER / ESCRIBIR
-    while(fgets(buffer, 100,archivoTXT) != NULL){
-        printf("%s",buffer);
+    int nota1, nota2, nota3;
+    while(fscanf(archivoTXT,"%d|%d|%d", &nota1, &nota2, &nota3) != EOF){
+        printf("\n\n\nVAMOS A VISUALIZAR LAS NOTAS POR ALUMNO Y SACAR SU PROMEDIO:\n");
+
+        printf("NOTA 1: %d\n", nota1);
+        printf("NOTA 2: %d\n", nota2);
+        printf("NOTA 3: %d\n", nota3);
+
+        promedio = ((nota1 + nota2 + nota3)/3.0);
+        printf("PROMEDIO: %.2f", promedio);
     }
 
 
