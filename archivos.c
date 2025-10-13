@@ -319,6 +319,9 @@ int main(){
 /////////////////
 //      fputs();
 //
+//      ESCRIBE STRING
+
+/*
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -368,7 +371,7 @@ int main(){
     fclose(archivoTXT2);
 }
 
-
+*/
 
 
 
@@ -378,4 +381,61 @@ int main(){
 /////////////////
 //      fprintf();
 //
+
+//Es como un printf para mostrar en pantalla, pero en un archivo.
+//Lo unico que cambia es que al principio pide el archivo donde se va a guardar.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(){
+
+    //Declaraciones
+    char buffer[100];
+
+    //Paso 1 -  Inicializamos
+    FILE * archivoTXT2;
+
+
+    //Paso 2 - Abrimos el archivo y elegimos el modo
+    archivoTXT2 = fopen("textoPrueba2.txt","w");
+    if(archivoTXT2 == NULL){  //validacion
+
+        printf("No se pudo abrir el archivo\n");
+        return 1;
+
+    } else{
+        printf("El archivo se abrio con exito\n\n");
+    }
+
+
+    //Paso 3 - ESCRIBIR
+    char palabra1[20];
+    fflush(stdin);
+        printf("\nIngrese una palabra:");
+        scanf("%s", palabra1);
+
+    char palabra2[20];
+    fflush(stdin);
+        printf("\nIngrese una palabra:");
+        scanf("%s", palabra2);
+
+    char palabra3[20];
+    fflush(stdin);
+        printf("\nIngrese una palabra:");
+        scanf("%s", palabra3);
+
+
+    fprintf(archivoTXT2,"la pablabra1 es:%s\nLa palabra2 es:%s\nLa palabra3 es:%s\n ",palabra1, palabra2, palabra3);
+
+
+
+    //Paso 4 - cerrar archivo
+    fclose(archivoTXT2);
+
+    return 1;
+}
 
