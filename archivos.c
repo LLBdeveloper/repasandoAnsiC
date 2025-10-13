@@ -266,7 +266,7 @@ int main(){
   /////////////////
  //    FPUTC    //
 /////////////////
-//      fputc();
+//      fputc(caracter,archivo);
 //Escribe caracter por caracter
 
 //(EN ESCRITURA CON PUTC) "R+" sobrescribe desde el princio del archivo, y no desde el ultimo como A.
@@ -317,7 +317,7 @@ int main(){
   /////////////////
  //    FPUTS    //
 /////////////////
-//      fputs();
+//      fputs(string,archivo);
 //
 //      ESCRIBE STRING
 
@@ -379,7 +379,7 @@ int main(){
   /////////////////
  //   FPRINTF   //
 /////////////////
-//      fprintf();
+//      fprintf(archivo,"texto", variables);
 //
 
 //Es como un printf para mostrar en pantalla, pero en un archivo.
