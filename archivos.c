@@ -27,7 +27,7 @@ int main(){
 
     //Paso 4 - cerrar archivo
     fclose(archivoTXT);
-
+    return 0;
 }
 
 */
@@ -111,6 +111,9 @@ int main(){
     //Paso 4 - cerrar archivo
     fclose(archivoTXT);
 
+
+    return 0;
+
 }
 
 */
@@ -167,6 +170,7 @@ int main(){
 
     //Paso 4 - cerrar archivo
     fclose(archivoTXT);
+    return 0;
 
 }
 
@@ -234,6 +238,7 @@ int main(){
     //Paso 4 - cerrar archivo
     fclose(archivoTXT);
 
+    return 0;
 }
 */
 
@@ -305,7 +310,8 @@ int main(){
     }
 
     //Paso 4 - cerrar archivo
-    fclose(archivoTXT2);
+    fclose(archivoTXT2);.
+    return 0;
 }
 
 
@@ -369,6 +375,8 @@ int main(){
 
     //Paso 4 - cerrar archivo
     fclose(archivoTXT2);
+
+    return 0;
 }
 
 */
@@ -385,6 +393,7 @@ int main(){
 //Es como un printf para mostrar en pantalla, pero en un archivo.
 //Lo unico que cambia es que al principio pide el archivo donde se va a guardar.
 
+/*
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -436,6 +445,58 @@ int main(){
     //Paso 4 - cerrar archivo
     fclose(archivoTXT2);
 
-    return 1;
+    return 0;
 }
 
+*/
+
+
+
+
+
+
+
+
+//-------------------------------------------------------------
+
+///////////////////////////////////////////
+//////////   EJERCICIOS    ///////////////
+/////////////////////////////////////////
+
+
+
+
+
+/////////////////
+// EJERCICIO 1
+//
+//Basado en el siguiente formato de un archivo de texto:
+//      campo1|campo2|campo3|campo4
+//      campo1|campo2|campo3|campo4
+//      campo1|campo2|campo3|campo4
+
+//Donde el carácter „|‟ es usado como separador de campo,
+//y cada línea representa un registro.
+//Realizar una función que permita leer de un archivo con ese formato
+//y extraer todos los datos para poder almacenarlo en un struct que represente
+//cada registro leído y mostrarlo por pantalla.
+//Por ejemplo: 21|99888777|Jorge Perez|28 sea almacenado
+//en un struct que contenga los campos: legajo, dni, nombre_apellido y edad.
+//Para la resolución de este ejercicio
+//se recomienda utilizar funciones de string y punteros a char.
+
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+int main(){
+
+
+    return 0;
+}
