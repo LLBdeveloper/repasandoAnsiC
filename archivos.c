@@ -309,6 +309,7 @@ int main(){
         fputc(i,archivoTXT2);
     }
 
+
     //Paso 4 - cerrar archivo
     fclose(archivoTXT2);.
     return 0;
@@ -487,16 +488,46 @@ int main(){
 
 
 
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+struct persona {
 
+    int legajo;
+    char nombre[30];
+    int dni;
+    int edad;
+};
 
 int main(){
 
+    //creamos puntero la archivo
+    FILE * archivoTEXTO;
+
+    //abirmos archivo
+    archivoTEXTO = fopen("textoEjercicio1.txt", "r");
+    if(archivoTEXTO == NULL){
+        printf("No se pudo leer el archivo\n");
+    }else{
+        printf("archivo leido con exito\n");
+    }
+
+
+    //leemos
+
+    struct persona nuevo;
+
+    while(fscanf(archivoTEXTO, "%d|%d|%s|%d", &nuevo.legajo, &nuevo.dni, nuevo.nombre, &nuevo.edad) != EOF){
+
+        printf("Legajo:%d\n",nuevo.legajo);
+        printf("Dni:%d\n",nuevo.dni);
+        printf("Nombre:%s\n",nuevo.nombre);
+        printf("Edad:%d\n",nuevo.edad);
+    }
+
+    //cerramos
+    fclose(archivoTEXTO);
 
     return 0;
 }
