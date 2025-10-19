@@ -468,6 +468,8 @@ int main(){
 
 
 
+/*
+
 /////////////////
 // EJERCICIO 1
 //
@@ -528,6 +530,61 @@ int main(){
 
     //cerramos
     fclose(archivoTEXTO);
+
+    return 0;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+//******************************************************************************
+//PRACTICANDO
+//    fgetc();
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(){
+
+    FILE * archivinTxt;
+
+    archivinTxt = fopen("practicando1.txt", "r");
+    if(archivinTxt == NULL)
+    {
+        printf("Error al leer el archivo\n");
+    }
+    else
+    {
+        printf("Se abrio el archivo con exito\n");
+    }
+
+    int cantidadEspacios = 0;
+    char caracterLeido;
+    while((caracterLeido = fgetc(archivinTxt)) != EOF)
+    {
+        if(caracterLeido == 'a')
+        {
+            cantidadEspacios++;
+        }
+        printf("%c", caracterLeido);
+    }
+
+
+    printf("La cantidad de espacios es %d\n",cantidadEspacios);
+
+
+    fclose(archivinTxt);
 
     return 0;
 }
