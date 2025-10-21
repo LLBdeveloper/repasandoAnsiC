@@ -1,6 +1,5 @@
-//ARCHIVOS  read-white-aniadir
+//ARCHIVOS  read-write-add
 /*
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -573,7 +572,7 @@ int main(){
     char caracterLeido;
     while((caracterLeido = fgetc(archivinTxt)) != EOF)
     {
-        if(caracterLeido == 'a')
+        if(caracterLeido == ' ')
         {
             cantidadEspacios++;
         }
