@@ -545,6 +545,8 @@ int main(){
 
 //******************************************************************************
 //PRACTICANDO
+
+/*
 //    fgetc();
 
 
@@ -587,3 +589,33 @@ int main(){
 
     return 0;
 }
+*/
+
+
+//      fgets();
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+
+    char buffer[100];
+
+    FILE * archivinTxt;
+    archivinTxt = fopen("practicandoFGETS.txt","r");
+    if(archivinTxt == NULL){
+        printf("no se pudo abrir el archivo\n");
+    }else{
+        printf("archivo abierto con exito\n");
+    }
+
+    while((fgets(buffer, 100, archivinTxt)) != NULL){
+        printf("%s", buffer);
+    }
+
+    fclose(archivinTxt);
+
+    return 0;
+}
+
