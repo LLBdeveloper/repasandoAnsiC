@@ -591,7 +591,7 @@ int main(){
 }
 */
 
-
+/*
 //      fgets();
 
 #include <stdio.h>
@@ -611,11 +611,57 @@ int main(){
     }
 
     while((fgets(buffer, 100, archivinTxt)) != NULL){
-        printf("%s", buffer);
+        if(strcmp(buffer,"hola") == 0){
+           printf("la palabra hola esta en el archivo");
+        }
     }
 
     fclose(archivinTxt);
 
+    return 0;
+}
+*/
+
+
+//      fscanf();
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(){
+
+    FILE * archivexTxt;
+    archivexTxt = fopen("practicandoFSCANF.txt", "r");
+
+    if(archivexTxt == NULL){
+
+        printf("no se pudo abrir el archivo");
+    }else {
+        printf("archivo abierto con exito");
+    }
+
+
+
+    int nota1, nota2, nota3;
+    float promedio;
+
+    while(fscanf(archivexTxt,"%d-%d-%d",&nota1,&nota2,&nota3) == !EOF){
+
+        printf("nota 1 es :%d", nota1);
+        printf("nota 2 es :%d", nota2);
+        printf("nota 3 es :%d", nota3);
+
+        promedio=(nota1+nota2+nota3)/3.0;
+
+        printf("el promedio es: %.2f", promedio);
+
+    }
+
+
+
+    fclose(archivexTxt);
     return 0;
 }
 
