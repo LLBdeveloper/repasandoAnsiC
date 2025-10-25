@@ -455,95 +455,6 @@ int main(){
 
 
 
-
-
-
-//-------------------------------------------------------------
-
-///////////////////////////////////////////
-//////////   EJERCICIOS    ///////////////
-/////////////////////////////////////////
-
-
-
-
-
-/*
-
-/////////////////
-// EJERCICIO 1
-//
-//Basado en el siguiente formato de un archivo de texto:
-//      campo1|campo2|campo3|campo4
-//      campo1|campo2|campo3|campo4
-//      campo1|campo2|campo3|campo4
-
-//Donde el carácter „|‟ es usado como separador de campo,
-//y cada línea representa un registro.
-//Realizar una función que permita leer de un archivo con ese formato
-//y extraer todos los datos para poder almacenarlo en un struct que represente
-//cada registro leído y mostrarlo por pantalla.
-//Por ejemplo: 21|99888777|Jorge Perez|28 sea almacenado
-//en un struct que contenga los campos: legajo, dni, nombre_apellido y edad.
-//Para la resolución de este ejercicio
-//se recomienda utilizar funciones de string y punteros a char.
-
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-struct persona {
-
-    int legajo;
-    char nombre[30];
-    int dni;
-    int edad;
-};
-
-int main(){
-
-    //creamos puntero la archivo
-    FILE * archivoTEXTO;
-
-    //abirmos archivo
-    archivoTEXTO = fopen("textoEjercicio1.txt", "r");
-    if(archivoTEXTO == NULL){
-        printf("No se pudo leer el archivo\n");
-    }else{
-        printf("archivo leido con exito\n");
-    }
-
-
-    //leemos
-
-    struct persona nuevo;
-
-    while(fscanf(archivoTEXTO, "%d|%d|%s|%d", &nuevo.legajo, &nuevo.dni, nuevo.nombre, &nuevo.edad) != EOF){
-
-        printf("Legajo:%d\n",nuevo.legajo);
-        printf("Dni:%d\n",nuevo.dni);
-        printf("Nombre:%s\n",nuevo.nombre);
-        printf("Edad:%d\n",nuevo.edad);
-    }
-
-    //cerramos
-    fclose(archivoTEXTO);
-
-    return 0;
-}
-
-*/
-
-
-
-
-
-
-
-
-
 //******************************************************************************
 //PRACTICANDO
 //******************************************************************************
@@ -743,7 +654,7 @@ int main(){
 
 */
 
-
+/*
 
 ////////////////////////////////////////
 //      fprintf();
@@ -772,3 +683,84 @@ int main(){
 
     return 0;
 }
+
+
+*/
+
+
+
+
+//-------------------------------------------------------------
+
+///////////////////////////////////////////
+//////////   EJERCICIOS PDF   ////////////
+/////////////////////////////////////////
+
+
+
+/////////////////
+// EJERCICIO 1
+//
+//Basado en el siguiente formato de un archivo de texto:
+//      campo1|campo2|campo3|campo4
+//      campo1|campo2|campo3|campo4
+//      campo1|campo2|campo3|campo4
+
+//Donde el carácter „|‟ es usado como separador de campo,
+//y cada línea representa un registro.
+//Realizar una función que permita leer de un archivo con ese formato
+//y extraer todos los datos para poder almacenarlo en un struct que represente
+//cada registro leído y mostrarlo por pantalla.
+//Por ejemplo: 21|99888777|Jorge Perez|28 sea almacenado
+//en un struct que contenga los campos: legajo, dni, nombre_apellido y edad.
+//Para la resolución de este ejercicio
+//se recomienda utilizar funciones de string y punteros a char.
+
+
+
+/*
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct persona {
+
+    int legajo;
+    char nombre[30];
+    int dni;
+    int edad;
+};
+
+int main(){
+
+    //creamos puntero la archivo
+    FILE * archivoTEXTO;
+
+    //abirmos archivo
+    archivoTEXTO = fopen("textoEjercicio1.txt", "r");
+    if(archivoTEXTO == NULL){
+        printf("No se pudo leer el archivo\n");
+    }else{
+        printf("archivo leido con exito\n");
+    }
+
+
+    //leemos
+
+    struct persona nuevo;
+
+    while(fscanf(archivoTEXTO, "%d|%d|%s|%d", &nuevo.legajo, &nuevo.dni, nuevo.nombre, &nuevo.edad) != EOF){
+
+        printf("Legajo:%d\n",nuevo.legajo);
+        printf("Dni:%d\n",nuevo.dni);
+        printf("Nombre:%s\n",nuevo.nombre);
+        printf("Edad:%d\n",nuevo.edad);
+    }
+
+    //cerramos
+    fclose(archivoTEXTO);
+
+    return 0;
+}
+*/
