@@ -758,7 +758,7 @@ int main(){
     char stringgg[20];
     strcpy(stringgg,"soy el string bro");
     FILE * archivinTxt;
-    archivinTxt = fopen("practicandoFPRINTF.txt", "a+");
+    archivinTxt = fopen("practicandoFPRINTF.txt", "w");
 
     if(archivinTxt == NULL){
         printf("no se pudo abrir el archivo\n");
