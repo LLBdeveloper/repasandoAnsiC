@@ -706,7 +706,7 @@ int main(){
 
 
 
-
+/*
 ////////////////////////////////////////
 //      fputs();
 
@@ -738,8 +738,37 @@ int main(){
         }
     }while((strcmp(palabra,"FIN")) != 0);
 
+    return 0;
+}
+
+*/
+
+
+
+////////////////////////////////////////
+//      fprintf();
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(){
+
+    char stringgg[20];
+    strcpy(stringgg,"soy el string bro");
+    FILE * archivinTxt;
+    archivinTxt = fopen("practicandoFPRINTF.txt", "a+");
+
+    if(archivinTxt == NULL){
+        printf("no se pudo abrir el archivo\n");
+    }else {
+        printf("archivo abierto con exito\n");
+    }
+
+
+    fprintf(archivinTxt,"aca escribimos el string: %s", stringgg);
 
 
     return 0;
 }
-
