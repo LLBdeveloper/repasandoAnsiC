@@ -273,7 +273,8 @@ int main(){
 //      fputc(caracter,archivo);
 //Escribe caracter por caracter
 
-//(EN ESCRITURA CON PUTC) "R+" sobrescribe desde el princio del archivo, y no desde el ultimo como A.
+//(EN ESCRITURA CON PUTC) "R+" sobrescribe desde el princio del archivo,
+//y no desde el ultimo como A.
 
 
 /*
@@ -285,7 +286,7 @@ int main(){
 int main(){
 
     //Declaraciones
-    char buffer[100];
+    char caracter[100];
 
     //Paso 1 -  Inicializamos
     FILE * archivoTXT2;
@@ -545,8 +546,9 @@ int main(){
 
 //******************************************************************************
 //PRACTICANDO
-
+//******************************************************************************
 /*
+/////////////////
 //    fgetc();
 
 
@@ -560,7 +562,7 @@ int main(){
 
     FILE * archivinTxt;
 
-    archivinTxt = fopen("practicando1.txt", "r");
+    archivinTxt = fopen("practicandoFGETC.txt", "r");
     if(archivinTxt == NULL)
     {
         printf("Error al leer el archivo\n");
@@ -592,6 +594,7 @@ int main(){
 */
 
 /*
+///////////////////
 //      fgets();
 
 #include <stdio.h>
@@ -622,7 +625,8 @@ int main(){
 }
 */
 
-
+/*
+////////////////////
 //      fscanf();
 
 #include <stdio.h>
@@ -637,9 +641,9 @@ int main(){
 
     if(archivexTxt == NULL){
 
-        printf("no se pudo abrir el archivo");
+        printf("no se pudo abrir el archivo\n");
     }else {
-        printf("archivo abierto con exito");
+        printf("archivo abierto con exito\n");
     }
 
 
@@ -647,21 +651,95 @@ int main(){
     int nota1, nota2, nota3;
     float promedio;
 
-    while(fscanf(archivexTxt,"%d-%d-%d",&nota1,&nota2,&nota3) == !EOF){
+    while((fscanf(archivexTxt,"%d-%d-%d",&nota1,&nota2,&nota3)) != EOF){
 
-        printf("nota 1 es :%d", nota1);
-        printf("nota 2 es :%d", nota2);
-        printf("nota 3 es :%d", nota3);
+        printf("nota 1 es :%d \n", nota1);
+        printf("nota 2 es :%d \n", nota2);
+        printf("nota 3 es :%d \n\n", nota3);
 
         promedio=(nota1+nota2+nota3)/3.0;
 
-        printf("el promedio es: %.2f", promedio);
+        printf("el promedio es: %.2f \n", promedio);
 
     }
 
 
 
     fclose(archivexTxt);
+    return 0;
+}
+*/
+
+
+
+/*
+////////////////////////////////////////
+//      fputc();
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(){
+
+    FILE * archivexTxt;
+    archivexTxt = fopen("practicandoFPUTC.txt", "a+");
+
+    if(archivexTxt == NULL){
+        printf("no se pudo abrir el archivo\n");
+    }else {
+        printf("archivo abierto con exito\n");
+    }
+
+    for(int i = 'a'; i < 150; i++){
+        fputc(i, archivexTxt);
+        printf("escribiendo el codigo ascii %i \n", i);
+    }
+
+    fclose(archivexTxt);
+
+    return 0;
+}
+
+*/
+
+
+
+
+////////////////////////////////////////
+//      fputs();
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+int main(){
+
+    char palabra[50];
+
+    FILE * archivexTxt;
+    archivexTxt = fopen("practicandoFPUTS.txt", "a+");
+
+    if(archivexTxt == NULL){
+        printf("no se pudo abrir el archivo\n");
+    }else {
+        printf("archivo abierto con exito\n");
+    }
+
+    do{
+        fflush(stdin);
+        printf("Ingrese palabra\n\n");
+        scanf("%s", palabra);
+
+        if((strcmp(palabra,"FIN")) != 0){
+            fputs(palabra,archivexTxt);
+        }
+    }while((strcmp(palabra,"FIN")) != 0);
+
+
+
     return 0;
 }
 
