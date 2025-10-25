@@ -649,6 +649,9 @@ int main(){
         }
     }while((strcmp(palabra,"FIN")) != 0);
 
+
+    fclose(archivexTxt);
+
     return 0;
 }
 
@@ -680,12 +683,65 @@ int main(){
 
     fprintf(archivinTxt,"aca escribimos el string: %s", stringgg);
 
+    fclose(archivinTxt);
 
     return 0;
 }
 
 
 */
+
+//-------------------------------------------------------------
+
+///////////////////////////////////////////
+//////////  EJERCICIOS clase  ////////////
+/////////////////////////////////////////
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+
+int main(){
+
+    FILE * fileReader = fopen("palabras.txt", "a+");
+    if (fileReader == NULL){
+        printf("no se pudo abrir el archivo palabras.txt \n");
+    }else{
+        printf("el archivo palabras.txt fue abierto con exito\n");
+    }
+
+    FILE * fileWriter = fopen("estadisticas.txt", "w");
+    if (fileWriter == NULL){
+        printf("no se pudo abrir el archivo estadisticas.txt \n");
+    }else{
+        printf("el archivo estadisticas.txt fue abierto con exito\n");
+    }
+
+
+
+
+
+
+    fclose(fileReader);
+    fclose(fileWriter);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -746,7 +802,7 @@ int main(){
     }
 
 
-    //leemos
+    //leer
 
     struct persona nuevo;
 
