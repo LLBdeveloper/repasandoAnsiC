@@ -704,14 +704,9 @@ int main(){
 
 
 
-
 int main(){
 
-    int consonantes = 0;
-    int vocales = 0;
     char caracterLeido;
-    char registro[99];
-
 
     FILE * readingFile = fopen("palabras.txt", "a+");
     if (readingFile == NULL){
@@ -729,20 +724,44 @@ int main(){
 
 
 
+
+    //me confundi y era con fgets peroooo me puede servir el fgetc para diferenciar las consonantes
+    //y vocales que ya esta funcionando el contador.
+    // hay que readaptar el while  con fgets y que analize palabras y no caracteres o algo as (?
+
+
+
+
+
     while( (caracterLeido = fgetc(readingFile)) != EOF){
+
+        int consonantes = 0;
+        int vocales = 0;
+        char cantidadLetras = 0;
+        char registro[99];
+
+        cantidadLetras++;
 
         if(caracterLeido >= 'a' && caracterLeido <= 'z' ){
             caracterLeido = caracterLeido - 32;
         }
 
-
         if(caracterLeido == 'A' || caracterLeido == 'E' || caracterLeido == 'I' || caracterLeido == 'O' || caracterLeido == 'U' ){
             printf("\nVocal detectada en el caracter leido.\nSe procede a registrarla en el archivo -Estadisticas-\n");
-            //escribir archivo
-            fputc(caracterLeido, writingFile);
+            vocales++;
+        }else{
+            printf("\nConsonante detectada en el caracter leido.\nSe procede a registrarla en el archivo -Estadisticas-\n");
+            consonantes++;
         }
 
+
+        fprintf(writingFile,">>>CANT LETRAS:%d|CONSONANTES:%d|VOCALES:%d\n",cantidadLetras,consonantes,vocales);
+
+
+
     }
+
+
 
 
 
@@ -753,9 +772,6 @@ int main(){
 
     return 0;
 }
-
-
-
 
 
 
