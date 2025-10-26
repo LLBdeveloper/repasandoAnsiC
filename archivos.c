@@ -707,15 +707,21 @@ int main(){
 
 int main(){
 
-    FILE * fileReader = fopen("palabras.txt", "a+");
-    if (fileReader == NULL){
+    int consonantes = 0;
+    int vocales = 0;
+    char caracterLeido;
+    char registro[99];
+
+
+    FILE * readingFile = fopen("palabras.txt", "a+");
+    if (readingFile == NULL){
         printf("no se pudo abrir el archivo palabras.txt \n");
     }else{
         printf("el archivo palabras.txt fue abierto con exito\n");
     }
 
-    FILE * fileWriter = fopen("estadisticas.txt", "w");
-    if (fileWriter == NULL){
+    FILE * writingFile = fopen("estadisticas.txt", "w");
+    if (writingFile == NULL){
         printf("no se pudo abrir el archivo estadisticas.txt \n");
     }else{
         printf("el archivo estadisticas.txt fue abierto con exito\n");
@@ -723,11 +729,27 @@ int main(){
 
 
 
+    while( (caracterLeido = fgetc(readingFile)) != EOF){
+
+        if(caracterLeido >= 'a' && caracterLeido <= 'z' ){
+            caracterLeido = caracterLeido - 32;
+        }
+
+
+        if(caracterLeido == 'A' || caracterLeido == 'E' || caracterLeido == 'I' || caracterLeido == 'O' || caracterLeido == 'U' ){
+            printf("\nVocal detectada en el caracter leido.\nSe procede a registrarla en el archivo -Estadisticas-\n");
+            //escribir archivo
+            fputc(caracterLeido, writingFile);
+        }
+
+    }
 
 
 
-    fclose(fileReader);
-    fclose(fileWriter);
+
+
+    fclose(readingFile);
+    fclose(writingFile);
 
     return 0;
 }
