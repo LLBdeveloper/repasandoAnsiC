@@ -747,7 +747,12 @@ int main(){
 
         printf("La palabra %s fue registrada con exito en un struct\n",buffer);
 
-        procesarPalabra(buffer, writingFile);
+
+        struct Palabras palabraEnProceso = procesarPalabra(buffer, writingFile);
+
+
+        printf("Procedemos a escribir el archivo de registro con la informacion de cada palabra. . . \n");
+        fprintf(writingFile, "%s>>>CANT LETRAS:%d|CONSONANTES:%d|VOCALES:%d\n", palabraEnProceso.palabra, palabraEnProceso.cantLetras, palabraEnProceso.cantConsonantes, palabraEnProceso.cantVocales);
 
     }
 
@@ -763,6 +768,7 @@ int main(){
 
 struct Palabras procesarPalabra(char palabra[], FILE * archivo){
 
+    struct Palabras palabraProcesada;
 
     printf("Ahora vamos a procesar la palabra para encontrar cuantas vocales, consonantes y letras tiene. . .  \n");
 
@@ -772,15 +778,17 @@ struct Palabras procesarPalabra(char palabra[], FILE * archivo){
 
     for(int i = 0; palabra[i] != '\0'; i++){
 
-        char caracterLeido;
-        caracterLeido = palabra[i];
         letras++;
 
-        if(caracterLeido >= 'a' && caracterLeido <= 'z' ){
-            caracterLeido = caracterLeido - 32;
+        //char caracterLeido;
+        //caracterLeido = palabra[i];
+
+        if(palabra[i] >= 'a' && palabra[i] <= 'z' ){
+            palabra[i] = palabra[i] - 32;
         }
 
-        if(caracterLeido == 'A' || caracterLeido == 'E' || caracterLeido == 'I' || caracterLeido == 'O' || caracterLeido == 'U' ){
+
+        if(palabra[i] == 'A' || palabra[i] == 'E' || palabra[i] == 'I' || palabra[i] == 'O' || palabra[i] == 'U' ){
             printf("Vocal detectada en el caracter leido.\n");
            // printf("Se procede a registrarla en el archivo -Estadisticas-\n");
             vocales++;
@@ -791,12 +799,14 @@ struct Palabras procesarPalabra(char palabra[], FILE * archivo){
         }
     }
 
+    palabraProcesada.cantConsonantes = consonantes;
+    palabraProcesada.cantVocales = vocales;
+    palabraProcesada.cantLetras = letras;
+    strcpy(palabraProcesada.palabra, palabra);
+
     printf("La palabra %s tiene %d vocales, %d consonantes y %d letras\n", palabra, vocales, consonantes, letras);
-    printf("Procedemos a escribir el archivo de registro con la informacion de cada palabra. . . \n");
 
-    fprintf(archivo, "%s>>>CANT LETRAS:%d|CONSONANTES:%d|VOCALES:%d\n", palabra, letras, consonantes, vocales);
-
-
+    return palabraProcesada;
 }
 
 
