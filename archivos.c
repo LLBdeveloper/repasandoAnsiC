@@ -712,7 +712,7 @@ struct Palabras{
 };
 
 
-void procesarPalabra(char palabra[]);
+struct Palabras procesarPalabra(char palabra[], FILE * archivo);
 
 int main(){
 
@@ -724,7 +724,7 @@ int main(){
         printf("el archivo palabras.txt fue abierto con exito\n");
     }
 
-    FILE * writingFile = fopen("estadisticas.txt", "a");
+    FILE * writingFile = fopen("estadisticas.txt", "w");
     if (writingFile == NULL){
         printf("no se pudo abrir el archivo estadisticas.txt \n");
         fclose(readingFile);
@@ -742,13 +742,12 @@ int main(){
 
         printf("\nLa palabra leida es:%s \n", buffer);
 
-        printf("Vamos a registrarla en un struct y procesarla\n");
+        //printf("Vamos a registrarla en un struct y procesarla\n");
 
-        struct Palabras palabraEnProceso;
-        strcpy(palabraEnProceso.palabra, buffer);
-        printf("La pabra %s fue registrada con exito en un struct\n",palabraEnProceso.palabra);
 
-        procesarPalabra(buffer);
+        printf("La palabra %s fue registrada con exito en un struct\n",buffer);
+
+        procesarPalabra(buffer, writingFile);
 
     }
 
@@ -762,7 +761,7 @@ int main(){
 }
 
 
-void procesarPalabra(char palabra[]){
+struct Palabras procesarPalabra(char palabra[], FILE * archivo){
 
 
     printf("Ahora vamos a procesar la palabra para encontrar cuantas vocales, consonantes y letras tiene. . .  \n");
@@ -792,40 +791,18 @@ void procesarPalabra(char palabra[]){
         }
     }
 
-    printf("La palabra %s tiene %d vocales, %d consonantes y %d letras", palabra, vocales, consonantes, letras);
+    printf("La palabra %s tiene %d vocales, %d consonantes y %d letras\n", palabra, vocales, consonantes, letras);
+    printf("Procedemos a escribir el archivo de registro con la informacion de cada palabra. . . \n");
+
+    fprintf(archivo, "%s>>>CANT LETRAS:%d|CONSONANTES:%d|VOCALES:%d\n", palabra, letras, consonantes, vocales);
+
 
 }
 
 
 
-/*
-    //funcion procesar palabras a terminar
-    while( (caracterLeido = fgetc(readingFile)) != EOF){
-
-        int consonantes = 0;
-        int vocales = 0;
-        char cantidadLetras = 0;
-        char registro[99];
-
-        cantidadLetras++;
-
-        if(caracterLeido >= 'a' && caracterLeido <= 'z' ){
-            caracterLeido = caracterLeido - 32;
-        }
-
-        if(caracterLeido == 'A' || caracterLeido == 'E' || caracterLeido == 'I' || caracterLeido == 'O' || caracterLeido == 'U' ){
-            printf("\nVocal detectada en el caracter leido.\nSe procede a registrarla en el archivo -Estadisticas-\n");
-            vocales++;
-        }else{
-            printf("\nConsonante detectada en el caracter leido.\nSe procede a registrarla en el archivo -Estadisticas-\n");
-            consonantes++;
-        }
 
 
-        fprintf(writingFile,">>>CANT LETRAS:%d|CONSONANTES:%d|VOCALES:%d\n",cantidadLetras,consonantes,vocales);
-
-    }
-*/
 
 
 
