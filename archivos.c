@@ -700,8 +700,16 @@ int main(){
 
 
 
+
 /*
+
 //EJERCICIO 1
+//Desarrollar un programa que permita leer palabras del archivo “palabras.txt”.
+//Pasar cada palabra a mayúscula y obtener la cantidad de letras,vocales y consonantes.
+/Por cada palabra procesada escribir el siguiente registro en el archivo
+//“estadisticas.txt” PALABRA >>>CANT LETRAS: X | CONSONANTES: X | VOCALES: X
+
+
 
 
 #include <stdio.h>
@@ -819,7 +827,32 @@ struct Palabras procesarPalabra(char palabra[], FILE * archivo){
 
 
 
+
+
 //EJERCICIO 2
+/*
+Desarrollar un sistema que obtenga los montos (valores float)
+de hasta 10 cajas de dinero desde un
+archivo “cajas.txt” y los cargue en un vector.
+Una vez que se cargaron los valores en el vector se mostrará
+un menú con las siguiente funcionalidades:
+1- Ingresar dinero.
+Selecciona la caja y el monto a ingresar.
+Actualiza el archivo “cajas.txt” con los nuevos montos.
+Registra el movimiento agregando el registro
+INGRESO>>>CAJA X>>>MONTO al archivo “movimientos.txt”
+
+2- Extraer dinero.
+Selecciona la caja y el monto a retirar
+validando que haya dinero suficiente.
+Si se pudo retirar el monto se actualiza el archivo “cajas.txt”
+con los nuevos montos y agrega el
+registro EGRESO>>>CAJA X>>>MONTO, en el archivo ‘movimientos.txt’
+de lo contrario se agrega el registro ERROR_EGRESO>>>CAJA X>>>MONTO
+en el archivo ‘movimientos.txt’
+3- Listar cajas
+0- Salir.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -827,9 +860,66 @@ struct Palabras procesarPalabra(char palabra[], FILE * archivo){
 
 int main(){
 
+    int cajas[10];
+    int cantCajas;
+
+
+    FILE * cajasFile = fopen("cajas.txt", "r");
+    if (cajasFile == NULL){
+        printf("no se pudo abrir el archivo palabras.txt \n");
+    }else{
+        printf("el archivo palabras.txt fue abierto con exito\n");
+    }
+
+    FILE * movFile = fopen("movimientos.txt","a");
+    if (movFile == NULL){
+        printf("no se pudo abrir el archivo estadisticas.txt \n");
+        fclose(cajasFile);
+    }else{
+        printf("el archivo estadisticas.txt fue abierto con exito\n");
+    }
 
 
 
+    int botonMenu;
+    while(botonMenu != 999){
+
+        fflush(stdin);
+        printf("\nIngrese el numero de la opcion deseada:\n");
+        scanf("%d",&botonMenu);
+
+        if(botonMenu >= 0 && botonMenu < 4){
+
+            switch(botonMenu){
+
+                case 1:
+                    printf("F1 - INGRESAR DINERO\n");
+                    break;
+
+                case 2:
+                    printf("F2 - EXTRAER DINERO\n");
+                    break;
+
+                case 3:
+                    printf("F3 - LISTAR CAJAS\n");
+                    break;
+
+                case 0:
+                    printf("Saliendo del programa . . . \n");
+                    botonMenu = 999;
+                    break;
+            }
+        }else{
+            printf("Error - Ingrese una opcion valida\n");
+        }
+    }
+
+
+
+
+
+    fclose(cajasFile);
+    fclose(movFile);
 
     return 0;
 }
