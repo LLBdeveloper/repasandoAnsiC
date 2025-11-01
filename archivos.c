@@ -860,11 +860,11 @@ en el archivo ‘movimientos.txt’
 
 int main(){
 
-    int cajas[10];
-    int cantCajas;
+    float cajas[10];
+    int cantCajas = 0;
 
 
-    FILE * cajasFile = fopen("cajas.txt", "r");
+    FILE * cajasFile = fopen("cajas.txt", "a+");
     if (cajasFile == NULL){
         printf("no se pudo abrir el archivo palabras.txt \n");
     }else{
@@ -888,8 +888,6 @@ int main(){
         printf("\nIngrese el numero de la opcion deseada:\n");
         scanf("%d",&botonMenu);
 
-        if(botonMenu >= 0 && botonMenu < 4){
-
             switch(botonMenu){
 
                 case 1:
@@ -908,10 +906,11 @@ int main(){
                     printf("Saliendo del programa . . . \n");
                     botonMenu = 999;
                     break;
+
+                default:
+                    printf("Error - Ingrese una opcion valida\n");
+                    break;
             }
-        }else{
-            printf("Error - Ingrese una opcion valida\n");
-        }
     }
 
 
@@ -924,6 +923,8 @@ int main(){
     return 0;
 }
 
+
+int cargarCajas(float)
 
 
 
