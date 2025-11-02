@@ -924,7 +924,11 @@ int main(){
 }
 
 
-int cargarCajas(float)
+int cargarCajas(float){
+
+
+
+}
 
 
 
