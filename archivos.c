@@ -189,6 +189,21 @@ int main(){
 //      Cada uno de los tres valores se lee como un entero
 //      y se almacena en la variable nota1, nota2 nota3 respectivamente.
 
+/*Que devuelve fscanf()
+Cuando usás una función como fscanf(), su valor de retorno (lo que devuelve)
+te dice cuántos elementos logró leer correctamente.
+Por ejemplo:
+    int resultado = fscanf(archivo, "%f", &numero);
+- Si logró leer un número flotante correctamente, resultado vale 1.
+
+- Si llegó al final del archivo, o no pudo leer más datos, devuelve EOF (que vale -1).
+
+- Si el formato del dato en el archivo no coincide (por ejemplo,
+  hay letras en lugar de un número), devuelve 0.
+*/
+
+
+
 /*
 #include <stdio.h>
 #include <stdlib.h>
@@ -858,31 +873,49 @@ en el archivo ‘movimientos.txt’
 #include <stdlib.h>
 #include <string.h>
 
+struct Movimiento{
+
+    char tipo[20];
+    int caja;
+    float monto;
+
+};
+
+
+int cargarCajas(float* vec);
+void ingresarDinero(float* vec, int cantCajas);
+void listarCajas(float* vec, int cantCajas);
+void extraerDinero(float* vec, int cantCajas);
+
+
+
+
+
 int main(){
 
-    float cajas[10];
-    int cantCajas = 0;
+    float cajas[10] = {0};
+    int totalCantCajas;
 
-
-    FILE * cajasFile = fopen("cajas.txt", "a+");
-    if (cajasFile == NULL){
-        printf("no se pudo abrir el archivo palabras.txt \n");
-    }else{
-        printf("el archivo palabras.txt fue abierto con exito\n");
-    }
 
     FILE * movFile = fopen("movimientos.txt","a");
     if (movFile == NULL){
-        printf("no se pudo abrir el archivo estadisticas.txt \n");
-        fclose(cajasFile);
+        printf("no se pudo abrir el archivo movimientos.txt \n");
+        return 1;
     }else{
-        printf("el archivo estadisticas.txt fue abierto con exito\n");
+        printf("el archivo movimientos.txt fue abierto con exito\n");
     }
 
+
+    totalCantCajas = cargarCajas(cajas);
 
 
     int botonMenu;
     while(botonMenu != 999){
+        printf("\n\nMENU:\n\n");
+        printf("1 - INGRESAR DINERO\n");
+        printf("2 - EXTRAER DINERO\n");
+        printf("3 - LISTAR CAJAS\n");
+        printf("\n0 - SALIR\n\n");
 
         fflush(stdin);
         printf("\nIngrese el numero de la opcion deseada:\n");
@@ -892,14 +925,17 @@ int main(){
 
                 case 1:
                     printf("F1 - INGRESAR DINERO\n");
+                    ingresarDinero(cajas, totalCantCajas);
                     break;
 
                 case 2:
                     printf("F2 - EXTRAER DINERO\n");
+                    extraerDinero(cajas, totalCantCajas);
                     break;
 
                 case 3:
                     printf("F3 - LISTAR CAJAS\n");
+                    listarCajas(cajas,totalCantCajas);
                     break;
 
                 case 0:
@@ -917,14 +953,79 @@ int main(){
 
 
 
-    fclose(cajasFile);
     fclose(movFile);
 
     return 0;
 }
 
 
-int cargarCajas(float){
+int cargarCajas(float * vec){
+
+    int cantCajas = 0;
+    float montoLeido;
+
+
+    FILE * cajasFile = fopen("cajas.txt", "a+");
+    if (cajasFile == NULL){
+        printf("no se pudo abrir el archivo cajas.txt \n");
+        return 1;
+    }else{
+        printf("el archivo cajas.txt fue abierto con exito\n");
+    }
+
+
+    while( (fscanf(cajasFile,"%f",&montoLeido)) != EOF){
+        vec[cantCajas] = montoLeido;
+        cantCajas++;
+    }
+
+    printf("cantidad de cajas: %d\n",cantCajas);
+
+
+    fclose(cajasFile);
+
+    return cantCajas;
+}
+
+
+void ingresarDinero(float* vec, int cantCajas){
+
+    int cajaSolicitada;
+    float montoIngreso;
+
+    printf("Ingrese el numero de la caja que quiere usar:\n");
+    scanf("%d", &cajaSolicitada);
+
+    if( cajaSolicitada < 1 || cajaSolicitada < cantCajas){
+        printf("La caja solicitada no existe\n");
+    }else{
+        printf("Ingreso con exito a la caja solicitada.\nSu saldo es de %.2f\n",vec[cajaSolicitada-1]);
+        printf("Escriba el monto en $ a ingresar:\n");
+        scanf("%f", &montoIngreso);
+        vec[cajaSolicitada-1] += montoIngreso;
+    }
+
+
+
+}
+
+
+void extraerDinero(float* vec, int cantCajas){
+
+    int cajaSolicitada;
+    float montoIngreso;
+
+    printf("Ingrese el numero de la caja con la que necesita operar:\n");
+    scanf("%d", &cajaSolicitada);
+
+    if( cajaSolicitada < 1 || cajaSolicitada < cantCajas){
+        printf("La caja solicitada no existe\n");
+    }else{
+        printf("Ingreso con exito a la caja solicitada.\nSu saldo es de %.2f\n",vec[cajaSolicitada-1]);
+        printf("Escriba el monto en $ a extraer:\n");
+        scanf("%f", &montoIngreso);
+        vec[cajaSolicitada-1] -= montoIngreso;
+    }
 
 
 
@@ -935,6 +1036,18 @@ int cargarCajas(float){
 
 
 
+
+
+void listarCajas(float* vec, int cantCajas){
+
+    printf("La cantidad total de cajas es de %d\n",cantCajas);
+
+
+    for(int i = 0; i < cantCajas; i++){
+        printf("La caja numero %d tiene un saldo de $%.2f\n", i+1, vec[i]);
+    }
+
+}
 
 
 
