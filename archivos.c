@@ -886,7 +886,7 @@ int cargarCajas(float* vec);
 void ingresarDinero(float* vec, int cantCajas);
 void listarCajas(float* vec, int cantCajas);
 void extraerDinero(float* vec, int cantCajas);
-voidsobrescribirCajas(float* vec, int cantCajas){
+void sobreEscribirCajas(float* vec, int cantCajas);
 
 
 
@@ -997,7 +997,7 @@ void ingresarDinero(float* vec, int cantCajas){
     printf("Ingrese el numero de la caja que quiere usar:\n");
     scanf("%d", &cajaSolicitada);
 
-    if( cajaSolicitada < 1 || cajaSolicitada < cantCajas){
+    if( cajaSolicitada <= 1 || cajaSolicitada > cantCajas){
         printf("La caja solicitada no existe\n");
     }else{
         printf("Ingreso con exito a la caja solicitada.\nSu saldo es de %.2f\n",vec[cajaSolicitada-1]);
@@ -1019,7 +1019,7 @@ void extraerDinero(float* vec, int cantCajas){
     printf("Ingrese el numero de la caja con la que necesita operar:\n");
     scanf("%d", &cajaSolicitada);
 
-    if( cajaSolicitada < 1 || cajaSolicitada < cantCajas){
+    if( cajaSolicitada <= 1 || cajaSolicitada > cantCajas){
         printf("La caja solicitada no existe\n");
     }else{
         printf("Ingreso con exito a la caja solicitada.\nSu saldo es de %.2f\n",vec[cajaSolicitada-1]);
@@ -1046,9 +1046,9 @@ void listarCajas(float* vec, int cantCajas){
 
 
 
-void sobrescribirCajas(float* vec, int cantCajas){
+void sobreEscribirCajas(float* vec, int cantCajas){
 
-
+printf("sobreEscribir");
 
 }
 
