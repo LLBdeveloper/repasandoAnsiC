@@ -886,6 +886,7 @@ int cargarCajas(float* vec);
 void ingresarDinero(float* vec, int cantCajas);
 void listarCajas(float* vec, int cantCajas);
 void extraerDinero(float* vec, int cantCajas);
+voidsobrescribirCajas(float* vec, int cantCajas){
 
 
 
@@ -1026,14 +1027,7 @@ void extraerDinero(float* vec, int cantCajas){
         scanf("%f", &montoIngreso);
         vec[cajaSolicitada-1] -= montoIngreso;
     }
-
-
-
 }
-
-
-
-
 
 
 
@@ -1050,6 +1044,13 @@ void listarCajas(float* vec, int cantCajas){
 }
 
 
+
+
+void sobrescribirCajas(float* vec, int cantCajas){
+
+
+
+}
 
 
 
