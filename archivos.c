@@ -33,9 +33,26 @@ int main(){
 
 
 
+// ****************************************************************************
+
+//      RESUMEN
+
+
+/*
+
+| **Función**                              | **Qué hace**                                             | **Qué devuelve**                                                      | **Cómo se compara correctamente** | **Ejemplo típico**                        |
+| ---------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------- | ----------------------------------------- |
+| `fscanf(FILE*, const char*, …)`          | Lee datos con formato (como `scanf`, pero desde archivo) | Número de elementos leídos con éxito, o `EOF` si hay error/fin        | `== cantidadEsperada` o `!= EOF`  | `while (fscanf(f, "%d", &x) == 1)`        |
+| `fgetc(FILE*)`                           | Lee un carácter del archivo                              | El carácter leído (como `int`), o `EOF` si termina el archivo         | `!= EOF`                          | `while ((c = fgetc(f)) != EOF)`           |
+| `fgets(char*, int, FILE*)`               | Lee una línea de texto (hasta `\n` o fin de archivo)     | El puntero al buffer si tuvo éxito, o `NULL` si no                    | `!= NULL`                         | `while (fgets(buf, 100, f) != NULL)`      |
+| `fputs(const char*, FILE*)`              | Escribe una cadena de texto completa en el archivo       | Valor positivo si tuvo éxito, o `EOF` si error                        | `!= EOF`                          | `if (fputs("Hola\n", f) != EOF)`          |
+| `fprintf(FILE*, const char*, …)`         | Escribe datos con formato en el archivo (como `printf`)  | Cantidad de caracteres escritos, o valor negativo si hay error        | `>= 0`                            | `if (fprintf(f, "Edad: %d\n", edad) < 0)` |
+| `putc(int, FILE*)` o `fputc(int, FILE*)` | Escribe **un solo carácter** en el archivo               | El carácter escrito (como `unsigned char`) si éxito, o `EOF` si error | `!= EOF`                          | `if (fputc('A', f) == EOF)`               |
+
+
+*/
+
 // ***************************************************************************
-
-
 
 ////////////////////////////////////////////////////////////
 /////////           LECTURA DE ARCHIVOS             ///////
@@ -869,6 +886,9 @@ en el archivo ‘movimientos.txt’
 0- Salir.
 */
 
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -927,16 +947,22 @@ int main(){
                 case 1:
                     printf("F1 - INGRESAR DINERO\n");
                     ingresarDinero(cajas, totalCantCajas);
+                    sobreEscribirCajas(cajas, totalCantCajas);
                     break;
 
                 case 2:
                     printf("F2 - EXTRAER DINERO\n");
                     extraerDinero(cajas, totalCantCajas);
+                    sobreEscribirCajas(cajas, totalCantCajas);
                     break;
 
                 case 3:
                     printf("F3 - LISTAR CAJAS\n");
                     listarCajas(cajas,totalCantCajas);
+                    break;
+
+                case 4:
+                    sobreEscribirCajas(cajas, totalCantCajas);
                     break;
 
                 case 0:
@@ -1031,14 +1057,10 @@ void extraerDinero(float* vec, int cantCajas){
 
 
 void listarCajas(float* vec, int cantCajas){
-
     printf("La cantidad total de cajas es de %d\n",cantCajas);
-
-
     for(int i = 0; i < cantCajas; i++){
         printf("La caja numero %d tiene un saldo de $%.2f\n", i+1, vec[i]);
     }
-
 }
 
 
@@ -1046,9 +1068,55 @@ void listarCajas(float* vec, int cantCajas){
 
 void sobreEscribirCajas(float* vec, int cantCajas){
 
-printf("sobreEscribir");
+    printf("Permisos obtenidos para modificar achivo cajas.txt - SobreEscribir\n");
+
+    FILE * cajasFile = fopen("cajas.txt","w");
+
+    for(int i = 0; i<cantCajas; i++){
+            fprintf(cajasFile,"%.2f\n", vec[i]);
+            printf("escribimos la linea numero %d\n", i+1);
+        }
+    printf("Actualizamos los saldos de las cajas en el archivo cajas.txt\n");
+
+    listarCajas(vec,cantCajas);
 
 }
+
+
+
+int agregarMovimientos(float* vec, int cantCajas){
+
+    printf("Registramos movimiento");
+
+
+
+
+
+
+    return 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+123.12
+321.21
+456.65
+654.45
+*/
+
+
 
 
 
