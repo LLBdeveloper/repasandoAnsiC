@@ -966,7 +966,7 @@ int main(){
                     break;
 
                 case 0:
-                    printf("Saliendo del programa . . . \n");
+                    printf("Saliendo del programa . . .  \n");
                     botonMenu = 999;
                     break;
 
