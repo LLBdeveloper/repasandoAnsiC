@@ -1068,7 +1068,7 @@ void listarCajas(float* vec, int cantCajas){
 
 void sobreEscribirCajas(float* vec, int cantCajas){
 
-    printf("Permisos obtenidos para modificar achivo cajas.txt - SobreEscribir\n");
+    printf("Permisos obtenidos para modificar achivo cajas.txt  - SobreEscribir\n");
 
     FILE * cajasFile = fopen("cajas.txt","w");
 
