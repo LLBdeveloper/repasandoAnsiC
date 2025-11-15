@@ -994,10 +994,10 @@ int cargarCajas(float * vec){
 
     FILE * cajasFile = fopen("cajas.txt", "a+");
     if (cajasFile == NULL){
-        printf("no se pudo abrir el archivo cajas.txt \n");
+        printf("No se pudo abrir el archivo cajas.txt \n");
         return 1;
     }else{
-        printf("el archivo cajas.txt fue abierto con exito\n");
+        printf("El archivo cajas.txt fue abierto con exito\n");
     }
 
 
