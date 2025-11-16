@@ -1,4 +1,6 @@
-//ARCHIVOS  read-write-add
+
+//ARCHIVOS de texto
+
 /*
 #include <stdio.h>
 #include <stdlib.h>
@@ -60,7 +62,7 @@ int main(){
 
 
 //////////////////////////////////
-//para leer un archivo se utilizan una de estas 3 funciones
+//para leer un archivo de texto se utilizan una de estas 3 funciones
 //de la biblioteca stdio.h
 
 //      fgetc()  LECTURA CARACTER POR CARACTER
@@ -856,12 +858,11 @@ struct Palabras procesarPalabra(char palabra[], FILE * archivo){
 }
 
 */
-
-
-
-
-
 //EJERCICIO 2
+
+//A ESTE CODIGO LE FALTA PODER REGISTAR TODOS LOS MOVIMIENTOS EN UN ARCHIVO, lo demas esta OK
+
+
 /*
 Desarrollar un sistema que obtenga los montos (valores float)
 de hasta 10 cajas de dinero desde un
@@ -888,7 +889,7 @@ en el archivo ‘movimientos.txt’
 
 
 
-
+/*
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1098,7 +1099,7 @@ int agregarMovimientos(float* vec, int cantCajas){
 
 
 
-
+*/
 
 
 
@@ -1194,3 +1195,12 @@ int main(){
     return 0;
 }
 */
+
+
+
+
+
+
+
+
+
