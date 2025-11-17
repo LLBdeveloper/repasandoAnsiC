@@ -1195,12 +1195,162 @@ int main(){
     return 0;
 }
 */
+/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+
+
+/*
+
+// Manejo de archivos BINARIOS
+
+
+//////
+
+Archivos de texto:
+Cada byte representa un caracter
+codificado en ascii
+
+Registros de longitud variable
+Cada registro es leído como un string que
+finaliza con un salto de línea \n
+
+
+El acceso es secuencial
+Para acceder a un registro particular se
+deben recorrer todos los registros anteriores.
+Para modificar un registro se debe
+sobreescribir todo el archivo
+
+//////////
+
+Archivos binarios:
+Cada byte puede representar parte de
+un entero, un float, una estructura, etc.
+según el formato en el que se haya
+codificado.
+Contenido no legible para humanos.
+
+Registros de longitud fija
+Cada registro es un conjunto de bytes de
+tamaño fijo.
+Por ejemplo registros de 2 bytes que
+representan un número entero short.
+
+
+El acceso es aleatorio
+Permite acceder a un registro de forma
+directa sin necesidad de recorrer todos los
+anteriores.
+Se puede modificar un registro sin
+necesidad de sobreescribir todo el archivo
+//////////
+
+
+
+¿Cómo se trabaja con archivos en C?
+
+Paso 1: Declarar el puntero FILE *  //  FILE * archivo;
+
+Paso 2: Apertura de archivo //  archivo = fopen(ruta_archivo,modo);
+if(archivo == NULL)
+{
+return 1;
+}
+
+Paso 3: Lectura o escritura
+size_t fwrite(void *puntero, size_t cant_bytes, size_t cant_reg, FILE * archivo)
+    Puntero: Dirección del espacio de memoria con los datos que se van a escribir
+
+    cant_bytes: Es la cantidad de bytes que ocupa un registro en el archivo.
+
+    cant_reg: Es la cantidad de registros que se van a escribir el archivo
+
+    archivo: Es el puntero FILE* que contiene la información del archivo que se abrió para escribir
+
+    fwrite devuelve la cantidad de registros (bloques de N bytes) que se escribieron correctamente
+
+Paso 4: Cierre
 
 
 
 
 
 
+///////////////////////////
+
+EJEMPLO ESCRITURA:
+
+///////////////////////////
 
 
+
+Ejemplo: Escribir 5 números enteros short
+
+
+    Apertura:“wb” Abre el archivo enmodo escritura binaria.
+    Si no existe lo crea.Si existe lo trunca.
+
+    FILE * archivoBIN;
+    archivoBIN = fopen(“numeros.bin”, “wb”); //apertura
+    if(archivoBIN == NULL) //validación
+    {
+    return 1;
+    }
+
+ /////////
+
+    Escritura de a un registro:
+    Se escribe un registro en el archivo binario utilizando fwrite.
+
+    short numero_ingresado;
+    for(int i = 0; i < 5; i++)
+    {
+    printf(“Ingrese un número entero:\n”);
+    scanf(“%hi”,&numero_ingresado);
+    fwrite(&numero_ingresado,sizeof(short),1,archivoBIN);
+    }
+
+///////////
+
+    Escritura de todos los
+    valores en un solo llamado:
+    Primero se cargan todos los
+    números en el vector y luego
+    se escriben todos los valores
+    en un solo llamado a fwrite
+
+
+    short numeros[5]; //vector de 5 shorts de 2 bytes c/u
+    for(int i = 0; i < 5; i++)
+    {
+    printf(“Ingrese un número entero:\n”);
+    scanf(“%hi”,&numeros[i]);
+    }
+    fwrite(numeros,sizeof(short),5,archivoBIN);
+
+
+
+
+
+FREAD devuelve la cantidad de archivos leidos con exito.
 
