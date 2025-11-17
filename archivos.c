@@ -1221,75 +1221,83 @@ int main(){
 
 /*
 
-// Manejo de archivos BINARIOS
+/////////////////////////////////////////////////////////
+// Manejo de archivos BINARIOS//////////////////////////
+///////////////////////////////////////////////////////
 
 
-//////
+
+
+    BINARIOS VS TEXTO
+
 
 Archivos de texto:
-Cada byte representa un caracter
-codificado en ascii
+    -Cada byte representa un caracter
+    codificado en ascii
 
-Registros de longitud variable
-Cada registro es leído como un string que
-finaliza con un salto de línea \n
+    -Registros de longitud variable
+    Cada registro es leído como un string que
+    finaliza con un salto de línea \n
 
 
-El acceso es secuencial
-Para acceder a un registro particular se
-deben recorrer todos los registros anteriores.
-Para modificar un registro se debe
-sobreescribir todo el archivo
+    -El acceso es secuencial
+    Para acceder a un registro particular se
+    deben recorrer todos los registros anteriores.
+    Para modificar un registro se debe
+    sobreescribir todo el archivo
 
-//////////
+
 
 Archivos binarios:
-Cada byte puede representar parte de
-un entero, un float, una estructura, etc.
-según el formato en el que se haya
-codificado.
-Contenido no legible para humanos.
+    -Cada byte puede representar parte de
+    un entero, un float, una estructura, etc.
+    según el formato en el que se haya
+    codificado.
+    Contenido no legible para humanos.
 
-Registros de longitud fija
-Cada registro es un conjunto de bytes de
-tamaño fijo.
-Por ejemplo registros de 2 bytes que
-representan un número entero short.
+    -Registros de longitud fija
+    Cada registro es un conjunto de bytes de
+    tamaño fijo.
+    Por ejemplo registros de 2 bytes que
+    representan un número entero short.
 
 
-El acceso es aleatorio
-Permite acceder a un registro de forma
-directa sin necesidad de recorrer todos los
-anteriores.
-Se puede modificar un registro sin
-necesidad de sobreescribir todo el archivo
-//////////
+    -El acceso es aleatorio
+    Permite acceder a un registro de forma
+    directa sin necesidad de recorrer todos los
+    anteriores.
+    Se puede modificar un registro sin
+    necesidad de sobreescribir todo el archivo
+
+
+
+//////////////////////////////////////////////////
 
 
 
 ¿Cómo se trabaja con archivos en C?
 
-Paso 1: Declarar el puntero FILE *  //  FILE * archivo;
+    -Paso 1: Declarar el puntero FILE *  //  FILE * archivo;
 
-Paso 2: Apertura de archivo //  archivo = fopen(ruta_archivo,modo);
-if(archivo == NULL)
-{
-return 1;
-}
+    -Paso 2: Apertura de archivo //  archivo = fopen(ruta_archivo,modo);
+    if(archivo == NULL)
+    {
+    return 1;
+    }
 
-Paso 3: Lectura o escritura
-size_t fwrite(void *puntero, size_t cant_bytes, size_t cant_reg, FILE * archivo)
-    Puntero: Dirección del espacio de memoria con los datos que se van a escribir
+    -Paso 3: Lectura o escritura
+    size_t fwrite(void *puntero, size_t cant_bytes, size_t cant_reg, FILE * archivo)
+        Puntero: Dirección del espacio de memoria con los datos que se van a escribir
 
-    cant_bytes: Es la cantidad de bytes que ocupa un registro en el archivo.
+        cant_bytes: Es la cantidad de bytes que ocupa un registro en el archivo.
 
-    cant_reg: Es la cantidad de registros que se van a escribir el archivo
+        cant_reg: Es la cantidad de registros que se van a escribir el archivo
 
-    archivo: Es el puntero FILE* que contiene la información del archivo que se abrió para escribir
+        archivo: Es el puntero FILE* que contiene la información del archivo que se abrió para escribir
 
-    fwrite devuelve la cantidad de registros (bloques de N bytes) que se escribieron correctamente
+        fwrite devuelve la cantidad de registros (bloques de N bytes) que se escribieron correctamente
 
-Paso 4: Cierre
+    -Paso 4: Cierre
 
 
 
@@ -1317,7 +1325,7 @@ Ejemplo: Escribir 5 números enteros short
     return 1;
     }
 
- /////////
+ ///////// opcion1
 
     Escritura de a un registro:
     Se escribe un registro en el archivo binario utilizando fwrite.
@@ -1330,7 +1338,7 @@ Ejemplo: Escribir 5 números enteros short
     fwrite(&numero_ingresado,sizeof(short),1,archivoBIN);
     }
 
-///////////
+/////////// opcion2
 
     Escritura de todos los
     valores en un solo llamado:

@@ -233,7 +233,7 @@ void crearPersonaje(struct Personaje* listaPersonajes, int* cantidadTotal) {
     (*cantidadTotal)++;
 
     //resultado
-    printf("\033[32m\n\n\nPersonaje '%s' creado con exito! (ID: %d)\n\033[0m\n\n\n", nuevo->nombre, nuevo->id);
+    printf("\n\n\nPersonaje '%s' creado con exito! (ID: %d)\n\n\n\n", nuevo->nombre, nuevo->id);
     printf("\n-Atributos del nuevo personaje- \nVida: %d, Ataque: %d, Defensa: %d, Nivel: %d\n",
            nuevo->vida, nuevo->ataque, nuevo->defensa, nuevo->nivel);
 }
@@ -295,7 +295,7 @@ void mejorarPersonaje(struct Personaje* listaPersonajes, int cantidadTotal) {
     }while(personajeActual->puntosMejora > 0);
 
     //resultado
-    printf("\033[32m\nProceso de mejora finalizado para %s\n\033[0m\n", personajeActual->nombre);
+    printf("\nProceso de mejora finalizado para %s\n\n", personajeActual->nombre);
 }
 
 
@@ -431,16 +431,16 @@ void luchar(struct Personaje* personajes, int cantidadTotal){
 
     //inicia la pelea con presentacion de luchadores
     printf("\n\n\n\n");
-    printf("\033[31m\n\n    - - - - - - - -  %s  vs %s  - - - - - - - - -\n\n\033[0m\n",atacante->nombre,defensor->nombre);
+    printf("\n\n    - - - - - - - -  %s  vs %s  - - - - - - - - -\n\n\n",atacante->nombre,defensor->nombre);
 
-    printf("\033[32m\n\nATRIBUTOS DEL JUGADOR ATACANTE\n\n\033[0m\n");
+    printf("\n\nATRIBUTOS DEL JUGADOR ATACANTE\n\n\n");
     printf("Nombre: %s\n", atacante->nombre);
     printf("Nivel: %d\n", atacante->nivel);
     printf("Vida: %d\n", atacante->vida);
     printf("Ataque: %d\n", atacante->ataque);
     printf("Defensa: %d\n", atacante->defensa);
 
-    printf("\033[32m\n\nATRIBUTOS DEL JUGADOR DEFENSOR\n\n\033[0m\n");
+    printf("\n\nATRIBUTOS DEL JUGADOR DEFENSOR\n\n\n");
     printf("Nombre: %s\n", defensor->nombre);
     printf("Nivel: %d\n", defensor->nivel);
     printf("Vida: %d\n", defensor->vida);
@@ -450,46 +450,46 @@ void luchar(struct Personaje* personajes, int cantidadTotal){
 
 
     //lee las reglas del juego
-    printf("\033[34m<<<<< LAS REGLAS DEL COMBATE >>>>>\ndanio = ataqueAtacante MENOS defensaDefensor\033[0m\n");
-    printf("\033[34m     Si danio queda en 0 o menos: Gana el defensor y recibe +2 puntos de mejora       \033[0m\n");
-    printf("\033[34m     Si es mayor a cero: Gana el atacante y se le resta el danio a la vida del defensor. El atacante recibe +1 punto de mejora o +3 y sube de nivel si el defensor muere.        \033[0m\n");
+    printf("<<<<< LAS REGLAS DEL COMBATE >>>>>\ndanio = ataqueAtacante MENOS defensaDefensor\n");
+    printf("     Si danio queda en 0 o menos: Gana el defensor y recibe +2 puntos de mejora       \n");
+    printf("     Si es mayor a cero: Gana el atacante y se le resta el danio a la vida del defensor. El atacante recibe +1 punto de mejora o +3 y sube de nivel si el defensor muere.\n");
 
 
-    printf("\033[31m\n\n\n           !!!! ARRANCA LA PELEA !!!!  \n\n\033[0m\n",atacante->nombre,defensor->nombre);
+    printf("\n\n\n           !!!! ARRANCA LA PELEA !!!!  \n\n\n",atacante->nombre,defensor->nombre);
 
     //sacamos la cuenta del danio total
     int danio = (atacante->ataque - defensor->defensa);
-    printf("\033[35m\n           ----- DANIO TOTAL %d ------\n\n \033[0m\n", danio);
+    printf("\n           ----- DANIO TOTAL %d ------\n\n \n", danio);
 
 
     //estructuraa de control  principal
     //basada en el valor del danio calculado (danio = ataque - defensa)
     if(danio<=0){
         //GANA DEFENSOR
-        printf("\033[33m\n            Gana el defensor llamado %s!!!!!!!!!!!\n\n \033[0m\n", defensor->nombre);
-        printf("\033[32mEl defensor recibe +2 puntos de mejora\n\033[0m\n");
+        printf("\n            Gana el defensor llamado %s!!!!!!!!!!!\n\n\n", defensor->nombre);
+        printf("El defensor recibe +2 puntos de mejora\n\n");
         defensor->puntosMejora += 2;
     }else{
         if(defensor->vida > 0){
 
             //GANA ATACANTE
 
-            printf("\033[33m                Gana el atacante de nombre %s!!!!!!!!!!!\n\n\033[0m\n",atacante->nombre);
+            printf("                Gana el atacante de nombre %s!!!!!!!!!!!\n\n\n",atacante->nombre);
 
-            printf("\033[32mEl atacante recibe +1 punto demejora\n\033[0m\n");
+            printf("El atacante recibe +1 punto demejora\n\n");
             atacante->puntosMejora += 1;
 
-            printf("\033[31m\n\n\n\nSe le resta el danio a la vida del defensor! \nVida actual del defensor: %d \n\033[0m\n", defensor->vida);
+            printf("\n\n\n\nSe le resta el danio a la vida del defensor! \nVida actual del defensor: %d \n\n", defensor->vida);
             defensor->vida = defensor->vida - danio;
         }else{
             //GANA ATACANTE Y MUERE DEFENSOR
-            printf("\033[33m\n               Gana atacante de nombre %s y muere el defensor de nombre %s!!!!!!!!!!!\n\n\033[0m\n",atacante->nombre, defensor->nombre);
+            printf("\n               Gana atacante de nombre %s y muere el defensor de nombre %s!!!!!!!!!!!\n\n\n",atacante->nombre, defensor->nombre);
 
-            printf("\033[32mEl atacante de nombre %srecibe +3 puntos de mejora y sube de nivel\n\033[0m\n",atacante->nombre); //cuando muere el def
+            printf("El atacante de nombre %srecibe +3 puntos de mejora y sube de nivel\n\n",atacante->nombre); //cuando muere el def
             atacante->puntosMejora += 3;
             atacante->nivel += 1;
 
-            printf("\033[31m\n\n\n\nSe le resta el danio a la vida del defensor \nVida actual del defensor: %d \n\033[0m\n", defensor->vida);
+            printf("\n\n\n\nSe le resta el danio a la vida del defensor \nVida actual del defensor: %d \n\n", defensor->vida);
             defensor->vida = defensor->vida - danio;
         }
     }
