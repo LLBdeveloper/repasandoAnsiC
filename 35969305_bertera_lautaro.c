@@ -51,6 +51,9 @@ void mostrarPersonaje(struct Personaje* personajes, int cantidadTotal);
 void mostrarTodos(struct Personaje* personajes, int cantidadTotal);
 void luchar(struct Personaje* personajes, int cantidadTotal);
 void mostrarMasVivo(struct Personaje* personajes, int cantidadTotal);
+struct Personaje* cargarDesdeBinario(struct Personaje* personajes, int *cantidadTotal, int *capacidadMax);
+void guardarEnBinario(struct Personaje* personajes, int cantidadTotal);
+
 
 
 /////////////////////////
@@ -88,6 +91,8 @@ int main() {
         printf("4 - Buscar y ver personaje\n");
         printf("5 - Ver todos los personajes\n");
         printf("6 - Ver personaje/s con mas vida\n");
+        printf("7 - Cargar personajes desde archivo binario\n");
+        printf("8 - Guardar personajes en archivo binario\n");
         printf("0 - Salir\n");
         printf("\n Elige una opcion: ");
         scanf("%d", &botonMenu);
@@ -120,6 +125,16 @@ int main() {
             case 6:
                 mostrarMasVivo(personajes,*pContadorPersonajes);
                 break;
+
+
+            case 7:
+                personajes = cargarDesdeBinario(personajes, pContadorPersonajes, maxCharacters);
+                break;
+
+            case 8:
+                guardarEnBinario(personajes, *pContadorPersonajes);
+                break;
+
 
             case 0:
                 printf("EXIT\n");
@@ -526,7 +541,100 @@ void mostrarMasVivo(struct Personaje* personajes, int cantidadTotal){
 }
 
 
+/////////////////////////
+//funcion cargarDesdeBinario
+// cargar todos los personajes desde un archivo binario
+struct Personaje* cargarDesdeBinario(struct Personaje* personajes, int *cantidadTotal, int *capacidadMax){
 
+    char nombre[50];
+    printf("\n ingrese el nombre del archivo binario: ");
+    scanf("%s", nombre);
+
+    FILE *bin = fopen(nombre, "rb");
+    if(bin == NULL){
+        printf("\n error: no se pudo abrir el archivo\n");
+        return personajes;
+    }
+
+    // cantidad total de bytes
+    fseek(bin, 0, SEEK_END);
+    int bytes = ftell(bin);
+    fseek(bin, 0, SEEK_SET);
+
+    // cantidad de personajes en el archivo
+    int cantArchivo = bytes / sizeof(struct Personaje);
+    printf("\n el archivo contiene %d personajes\n", cantArchivo);
+
+    // si archivo tiene mas personajes que la capacidad actual ampliar
+    if(cantArchivo > *capacidadMax){
+
+        int nuevaCapacidad = cantArchivo;
+
+        struct Personaje *tmp = realloc(personajes, nuevaCapacidad * sizeof(struct Personaje));
+        if(tmp == NULL){
+            printf("\n error: no se pudo ampliar con realloc\n");
+            fclose(bin);
+            return personajes;
+        }
+
+        personajes = tmp;
+        *capacidadMax = nuevaCapacidad;
+
+        printf("\n nueva capacidad ajustada a %d\n", *capacidadMax);
+    }
+
+    // leer todos los personajes del archivo
+    int leidos = fread(personajes, sizeof(struct Personaje), cantArchivo, bin);
+    fclose(bin);
+
+    *cantidadTotal = leidos;
+
+    printf("\n se cargaron %d personajes desde el archivo\n", leidos);
+
+    return personajes;
+}
+
+
+
+
+
+/////////////////////////
+//funcion guardarEnBinario
+//  guarda todos los personajes actuales en un archivo binario
+void guardarEnBinario(struct Personaje* personajes, int cantidadTotal){
+
+    char nombre[50];
+    printf("\n ingrese el nombre del archivo donde guardar: ");
+    scanf("%s", nombre);
+
+    // si existe pedir confirmacion
+    FILE *test = fopen(nombre, "rb");
+    if(test != NULL){
+        fclose(test);
+
+        char resp;
+        printf("\n el archivo ya existe, desea sobreescribirlo? ( s / n ): ");
+        scanf(" %c", &resp);
+
+        if(resp != 's' && resp != 'S'){
+            printf("\n no se guardo nada\n");
+            return;
+        }
+    }
+
+    // abrir archivo para escribir en modo binario
+    FILE *bin = fopen(nombre, "wb");
+    if(bin == NULL){
+        printf("\n error: no se pudo abrir el archivo para guardar\n");
+        return;
+    }
+
+    //guardar todos los personajes
+    fwrite(personajes, sizeof(struct Personaje), cantidadTotal, bin);
+    fclose(bin);
+
+    printf("\n se guardaron %d personajes en el archivo\n", cantidadTotal);
+}
 
 
 
