@@ -1273,9 +1273,9 @@ Archivos binarios:
 
 //////////////////////////////////////////////////
 
+    PASOS A SEGUIR
 
 
-¿Cómo se trabaja con archivos en C?
 
     -Paso 1: Declarar el puntero FILE *  //  FILE * archivo;
 
@@ -1298,6 +1298,80 @@ Archivos binarios:
         fwrite devuelve la cantidad de registros (bloques de N bytes) que se escribieron correctamente
 
     -Paso 4: Cierre
+
+
+
+
+///////////////////////////
+
+    ESCRITURA CON FWRITE (devuelve size_t con  la cantidad de registros escritos)
+
+
+
+    formato/estructura:
+    size_t fwrite(void *puntero, size_t cant_bytes, size_t cant_reg, FILE * archivo)
+
+        void *puntero
+        un puntero, direccion de memoria donde estan los datos que quiero escribir
+
+        size_t cant_bytes
+        cantidad de bytes que ocupa un registro ( struct va con sizeof()
+
+        size_t cant_reg
+        cantidad registros que queremos escribir
+
+        FILE * archivo
+        donde vamos a escribir
+
+
+    NOTAS:
+            -puede escribir todos los elementos de un vector con un solo llamado a la funcion fwrite
+            -cada regitro va a tener un tamano fijo. Ej: un registro de 3 enteros de 4 bytes cada uno lo que da un total de 12 bytes cada registro
+
+    //////////////////////////
+
+
+    LECTURA CON FREAD (devuelve size_t con  la cantidad de registros leidos)
+
+
+
+    formato/estructura:
+    size_t fread(void *puntero, size_t cant_bytes, size_t cant_reg, FILE * archivo)
+
+        void *puntero
+        un puntero, direccion de memoria donde se almacenaran los registros leidos
+
+        size_t cant_bytes
+        cantidad de bytes que ocupa un registro ( struct va con sizeof() )
+
+        size_t cant_reg
+        cantidad registros que queremos leer
+
+        FILE * archivo
+        de donde vamos a leer
+
+
+    NOTAS:
+            -el espacio apuntado por 'puntero' debe tener el espacio suficiente para almacenar todos los registros leidos
+            -debe ser del mismo tipo de dato
+            Ej: si leen 10 registros de short debe ser 'short * puntero' y apuntar a un espacio que tenga 20 bytes.
+
+
+
+
+///////////////////////////
+
+
+
+
+    FSEEK
+
+    formato/estructura:
+    int fseek(FILE * archivo, long int desplazamiento, int origen)
+
+    NOTAS:
+            -nos permite un desplazamiento del puntero de lectura/escritura.
+            -sirve para poder tener un acceso aleatorio a los registros del archivo.
 
 
 
@@ -1359,6 +1433,6 @@ Ejemplo: Escribir 5 números enteros short
 
 
 
-
 FREAD devuelve la cantidad de archivos leidos con exito.
 
+*/
