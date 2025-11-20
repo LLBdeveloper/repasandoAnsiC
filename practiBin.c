@@ -10,7 +10,7 @@
 
 
 //structs
-struct Account {
+struct Account {        // 60bytes total
         char user[30]; //30 bytes
         char pass[30]; //30 bytes
 };
@@ -27,7 +27,7 @@ int main(){
     int cantMax = MAX;
     struct Account accounts[cantMax];
 
-
+    //verificamos que el archivo exista
     FILE * test = fopen("cuentasBin", "rb");
     if(test != NULL){
         fclose(test);
@@ -36,14 +36,18 @@ int main(){
         scanf("%c",&resp);
         if(resp != 's' && resp != 'S'){
             printf("no se puede seguir, saliendo del programa...\n");
+            return 1;
         }
     }
 
+
+    //abrimos el archivo binario de cuentas
     FILE * archivoBin = fopen("cuentasBin","wb+");
     if(archivoBin == NULL) {printf("no se pudo abrir archivo cuentasBin\n");return 1;}
 
-    getchar();
 
+    //pedimos los usuarios
+    getchar();
     for(int i = 0; i < cantMax; i++) {
         printf("Ingrese usuario:\n");
         fgets(accounts[i].user, sizeof(accounts[i].user), stdin);
@@ -56,18 +60,39 @@ int main(){
 
 
 
-
+    //escribimos el vector de usuarios en el archivo binario
     fwrite(accounts,sizeof(struct Account),cantMax,archivoBin);
 
     fseek(archivoBin,0,SEEK_SET);
 
 
+    //MENU
+    int boton;
+    do{
+        printf("MENU\n");
+        printf("1 - ver usuarios\n");
+        printf("2 - modificar usuario\n");
 
-    verUsuarios(cantMax,archivoBin,accounts);
+        scanf("%d",&boton);
 
+        switch(boton){
+            case 1:
+                verUsuarios(cantMax,archivoBin,accounts);
+                break;
+            case 2:
+                modificarPass(cantMax,archivoBin,accounts);
+                break;
+            case 0:
+                boton=9;
+                break;
 
+            default:
+                printf("error - ingrese opcion 1 o 2 \n");
+                break;
+        }
 
-    modificarPass(cantMax,archivoBin,accounts);
+    }while(boton != 9);
+
 
     fclose(archivoBin);
 
@@ -128,7 +153,7 @@ void modificarPass(int cantidad, FILE * archivo, struct Account vector[]){
     char passNuevo[15];
     printf("ingrese el nuevo pass:\n");
     scanf("%s",passNuevo);
-    printf("el pass nuevo sera %s\nguardando cambios...", passNuevo);
+    printf("el pass nuevo sera %s\nguardando cambios...\n", passNuevo);
 
 
 
@@ -146,9 +171,7 @@ void modificarPass(int cantidad, FILE * archivo, struct Account vector[]){
     fseek(archivo,(indexEncontrado * sizeof(struct Account)),SEEK_SET);
     struct Account auxPassNew;
     fread(&auxPassNew,sizeof(struct Account),1,archivo);
-    printf("cambio de pass con exito en el proceso!!\nsu nuevo pass es: %s",auxPassNew.pass);
-
-
+    printf("cambio de pass con exito en el proceso!!\nsu nuevo pass es: %s\n",auxPassNew.pass);
 
 }
 
