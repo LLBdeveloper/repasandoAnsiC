@@ -1,3 +1,18 @@
+/*
+CONSIGNA:
+programa que escribe en un archi bin un vector de
+5 struct de 2 elementos: passs y user en string
+
+mostrar menu con 2 opciones
+
+
+-function ver usuarios.
+-function que te deje modificar una constrasena
+		que seleccione  el usuario.
+*/
+
+
+
 //librerias
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,6 +87,8 @@ int main(){
         printf("MENU\n");
         printf("1 - ver usuarios\n");
         printf("2 - modificar usuario\n");
+        printf("0 - SALIR\n");
+
 
         scanf("%d",&boton);
 

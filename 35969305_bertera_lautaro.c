@@ -641,6 +641,68 @@ void guardarEnBinario(struct Personaje* personajes, int cantidadTotal){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 
 consigna
@@ -660,12 +722,78 @@ int id);
 void mostrarPersonaje(Personaje p);
 
 void mostrarTodos(Personaje* personajes, int cantidad);
+//////
+
+//memo din
+int *arr = (int*)malloc(5 * sizeof(int));  array de 5 enteros en heap
+
+int *arr = (int*)calloc(5, sizeof(int));  array de 5 enteros inicializados a 0
+
+int *new_arr = (int*)realloc(arr, 5 * sizeof(int));
+
+//archivos texto estructuras
+int fgetc(FILE *stream); Lee un carácter del archivo. Devuelve el carácter leído o EOF si llega al final.
+char *fgets(char *str, int n, FILE *stream); Lee una línea (hasta \n o máximo n-1 caracteres).Devuelve el puntero str o NULL si hay error
+int fscanf(FILE *stream, const char *formato, ...); Lee texto formateado desde el archivo (como scanf pero desde archivo).Devuelve número de elementos leídos.
+int fputc(int c, FILE *stream);Escribe un carácter en el archivo. Devuelve el carácter escrito o EOF si hay error.
+int fputs(const char *str, FILE *stream);Escribe una cadena en el archivo.Devuelve un valor negativo si hay error.
+int fprintf(FILE *stream, const char *formato, ...); .Devuelve número de caracteres escritos.Escribe texto formateado en el archivo (como printf pero hacia archivo)
+
+//archivos bin estructuras
+size_t fread(void *ptr, size_t size, size_t count, FILE *stream); // size=tamano cada elementro count=cant elementos
+size_t fwrite(const void *ptr, size_t size, size_t count, FILE *stream);
+
+
+// &vec[2] es igual que poner (P+2)
+//vec[2] es igual que poner *(p+2)
+
+funcion(int vec[]) = funcion(int *vec) pasar vector por referencia a func
+
+
+//STR
+linea[strcspn(linea, "\n\r")] = '\0';  sacar SALTO de LINEA
+
+char *strcpy(char *dest, const char *src); copiar
+
+int strcmp(const char *str1, const char *str2); comparar
+ -0 si son iguales. <0 si str1 < str2. >0 si str1 > str2
+
+size_t strlen(const char *str); Devuelve la longitud de la cadena (sin contar el '\0').
+
+
+
+//fgetc
+    while((caracter_leido = fgetc(archivoTXT)) != EOF){
+        printf("\n%c", caracter_leido);
+        if(caracter_leido == 'a'){
+            cantA++;
+        }
+    }
+
+//fgets
+    while(fgets(buffer, 100,archivoTXT) != NULL){
+        printf("%s",buffer);
+    }
+
+//fscanf
+    int nota1, nota2, nota3;
+    while(fscanf(archivoTXT,"%d|%d|%d", &nota1, &nota2, &nota3) != EOF){
+        printf("\n\n\nVAMOS A VISUALIZAR LAS NOTAS POR ALUMNO Y SACAR SU PROMEDIO:\n");
+
+        printf("NOTA 1: %d\n", nota1);
+        printf("NOTA 2: %d\n", nota2);
+        printf("NOTA 3: %d\n", nota3);
+
+        promedio = ((nota1 + nota2 + nota3)/3.0);
+        printf("PROMEDIO: %.2f", promedio);
+    }
+
+
+    fprintf
+        fprintf(archivoTXT2,"la pablabra1 es:%s\nLa palabra2 es:%s\nLa palabra3 es:%s\n ",palabra1, palabra2, palabra3);
+
 
 */
-
-
-
-
 
 
 
